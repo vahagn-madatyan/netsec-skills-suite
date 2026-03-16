@@ -54,7 +54,7 @@ This milestone is complete only when all are true:
 - [x] **S01: Monorepo Foundation & Skill Templates** `risk:low` `depends:[]`
   > After this: repo has skills/ directory convention, SKILL.md template with safety tier metadata, GitHub Actions CI that catches malformed skills, README with install commands, CONTRIBUTING guide. A skeleton example skill validates the full pipeline.
 
-- [ ] **S02: Multi-Vendor Device Health Checks** `risk:medium` `depends:[S01]`
+- [x] **S02: Multi-Vendor Device Health Checks** `risk:medium` `depends:[S01]`
   > After this: 3 deep procedural health check skills (Cisco IOS-XE/NX-OS, Juniper JunOS, Arista EOS) with vendor-specific thresholds, decision trees, and structured report templates. Token budget pattern established.
 
 - [ ] **S03: Routing Protocol Analysis Suite** `risk:high` `depends:[S01]`

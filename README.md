@@ -26,7 +26,10 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 
 | Skill | Description | Safety Tier |
 |-------|-------------|-------------|
-| [example-device-health](skills/example-device-health/SKILL.md) | Cisco IOS-XE device health check and triage procedure | `read-only` |
+| [example-device-health](skills/example-device-health/SKILL.md) | Cisco IOS-XE device health check and triage procedure (reference implementation) | `read-only` |
+| [cisco-device-health](skills/cisco-device-health/SKILL.md) | Cisco IOS-XE and NX-OS dual-platform device health check with QFP/RP and VDC-aware triage | `read-only` |
+| [juniper-device-health](skills/juniper-device-health/SKILL.md) | Juniper JunOS device health check with RE/PFE separation, alarm-first triage, and dual-RE failover detection | `read-only` |
+| [arista-device-health](skills/arista-device-health/SKILL.md) | Arista EOS device health check with agent monitoring, MLAG state validation, and VXLAN/EVPN DC extensions | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

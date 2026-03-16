@@ -61,35 +61,35 @@ This file is the explicit capability and coverage contract for the project.
 
 ### R006 — Cisco IOS-XE/NX-OS device health check skill
 - Class: core-capability
-- Status: active
+- Status: validated
 - Description: Deep procedural skill for Cisco device triage — CPU/memory/interface/routing thresholds, decision trees, structured report output
 - Why it matters: Cisco is the most deployed network vendor — table stakes for the suite
 - Source: user
 - Primary owning slice: M001/S02
 - Supporting slices: none
-- Validation: unmapped
+- Validation: S02: `agentskills validate` exit 0, `scripts/validate.sh` PASS, body 1708 words ≤ 2700, dual-platform IOS-XE/NX-OS coverage confirmed
 - Notes: Covers both IOS-XE and NX-OS with platform-specific thresholds
 
 ### R007 — Juniper JunOS device health check skill
 - Class: core-capability
-- Status: active
+- Status: validated
 - Description: Deep procedural skill for Juniper device triage — RE/PFE health, routing engine failover, alarm analysis
 - Why it matters: Second most common enterprise vendor — needed for multi-vendor credibility
 - Source: user
 - Primary owning slice: M001/S02
 - Supporting slices: none
-- Validation: unmapped
+- Validation: S02: `agentskills validate` exit 0, `scripts/validate.sh` PASS, body 2326 words ≤ 2700, RE/PFE separation and alarm-first triage confirmed
 - Notes: none
 
 ### R008 — Arista EOS device health check skill
 - Class: core-capability
-- Status: active
+- Status: validated
 - Description: Deep procedural skill for Arista device triage — MLAG, VXLAN/EVPN health, hardware monitoring
 - Why it matters: Dominant in modern data center networks
 - Source: user
 - Primary owning slice: M001/S02
 - Supporting slices: none
-- Validation: unmapped
+- Validation: S02: `agentskills validate` exit 0, `scripts/validate.sh` PASS, body 2643 words ≤ 2700, MLAG/VXLAN/agent health confirmed
 - Notes: none
 
 ### R009 — BGP analysis skill (multi-vendor)
@@ -490,9 +490,9 @@ This file is the explicit capability and coverage contract for the project.
 | R003 | quality-attribute | validated | M001/S01 | none | S01: `actionlint` passes; two-layer CI wired. Pending first GHA run. |
 | R004 | launchability | validated | M001/S01 | M001/S02-S04 | S01: README has install cmd, catalog table, usage example |
 | R005 | operability | validated | M001/S01 | none | S01: CONTRIBUTING has format ref, safety tiers, validation, PR checklist |
-| R006 | core-capability | active | M001/S02 | none | unmapped |
-| R007 | core-capability | active | M001/S02 | none | unmapped |
-| R008 | core-capability | active | M001/S02 | none | unmapped |
+| R006 | core-capability | validated | M001/S02 | none | S02: dual-platform Cisco skill, `agentskills validate` + `scripts/validate.sh` PASS |
+| R007 | core-capability | validated | M001/S02 | none | S02: JunOS RE/PFE skill, `agentskills validate` + `scripts/validate.sh` PASS |
+| R008 | core-capability | validated | M001/S02 | none | S02: EOS agent+DC skill, `agentskills validate` + `scripts/validate.sh` PASS |
 | R009 | core-capability | active | M001/S03 | none | unmapped |
 | R010 | core-capability | active | M001/S03 | none | unmapped |
 | R011 | core-capability | active | M001/S03 | none | unmapped |
@@ -531,7 +531,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 33
-- Mapped to slices: 33
-- Validated: 5 (R001–R005)
+- Active requirements: 30
+- Mapped to slices: 30
+- Validated: 8 (R001–R008)
 - Unmapped active requirements: 0

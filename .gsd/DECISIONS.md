@@ -20,3 +20,7 @@
 | D012 | M001/S01 | convention | CI action pinning | checkout@v4, setup-python@v5, skills-ref==0.1.1 | Reproducible builds; avoid surprise breakage from upstream changes | Yes — update pins periodically |
 | D013 | M001/S01 | convention | CI permissions | contents: read (least privilege) | No write access needed for validation-only workflow | Yes — if CI needs write |
 | D014 | M001/S01 | convention | README usage example style | Multi-step realistic agent triage interaction | Demonstrates how skills drive agent behavior end-to-end, not just install | No |
+| D015 | M001/S02 | pattern | Dual-platform skill: shared procedure with labeled code blocks | **[IOS-XE]** / **[NX-OS]** labeled blocks within shared H3 steps | Scannable without duplicating procedure; established in T01 Cisco skill | Yes — per vendor |
+| D016 | M001/S02 | pattern | Alarm-first triage for JunOS | RE mastership (Step 1) then alarm analysis (Step 2) before resource checks | JunOS alarms are first-class status; checking them early shortcuts triage | Yes — per vendor |
+| D017 | M001/S02 | pattern | DC-extension steps as opt-in procedure sections | MLAG (Step 6) and VXLAN/EVPN (Step 7) with explicit skip guidance | Keeps skill usable for non-DC Arista deployments without irrelevant steps | Yes — per vendor |
+| D018 | M001/S02 | pattern | Agent health as dedicated procedure step (EOS) | Step 3 dedicated to `show agent` and daemon state | EOS agent architecture means subsystem-level failures invisible in aggregate metrics | No |
