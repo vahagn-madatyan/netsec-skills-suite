@@ -1,0 +1,115 @@
+# Network Security Skills Suite
+
+AI agent skills for network security operations — device triage, configuration auditing, and incident response procedures for Cisco and multi-vendor environments.
+
+![Validate Skills](https://github.com/vahagn-madatyan/network-security-skills-suite/actions/workflows/validate.yml/badge.svg)
+
+## What Is This?
+
+This repository is a curated collection of [Agent Skills](https://github.com/empoweragents/agent-skills) for network security engineering. Each skill is a structured procedure that an AI coding agent can load and follow — covering device health checks, security audits, configuration reviews, and more.
+
+Skills are written in the Agent Skills SKILL.md format and enhanced with network-specific conventions: safety tier metadata, threshold tables, decision trees, and structured report templates.
+
+## Install
+
+```bash
+npx skills add vahagn-madatyan/network-security-skills-suite
+```
+
+This discovers and installs all skills from the suite. To list available skills without installing:
+
+```bash
+npx skills add vahagn-madatyan/network-security-skills-suite --list
+```
+
+## Skill Catalog
+
+| Skill | Description | Safety Tier |
+|-------|-------------|-------------|
+| [example-device-health](skills/example-device-health/SKILL.md) | Cisco IOS-XE device health check and triage procedure | `read-only` |
+
+> **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## Usage
+
+Once installed, an agent loads a skill by name and follows its procedure. Here's how a typical interaction looks:
+
+```
+User: The core router is showing high CPU. Can you triage it?
+
+Agent: Loading skill: example-device-health
+
+I'll follow the Cisco IOS-XE Device Health Check procedure.
+
+Step 1: Establish Baseline Context
+Running: show version | include uptime|Version|bytes of memory
+
+  hostname: core-rtr-01
+  software: IOS-XE 17.6.3
+  uptime: 47 days, 3 hours
+
+Step 2: CPU Utilization Assessment
+Running: show processes cpu sorted | head 20
+
+  5-second: 92% ← CRITICAL (threshold: >90%)
+  1-minute: 78% ← WARNING
+  5-minute: 71% ← CRITICAL (threshold: >70%)
+  Top process: BGP Router (54%)
+
+Decision tree → CPU critical → Top process is BGP Router
+→ Check for route churn, peer flap, table size
+
+Step 5: Routing Table Health
+Running: show ip bgp summary
+
+  Neighbor 10.0.0.2: 847 state changes in last hour ← CRITICAL
+
+Finding: BGP peer 10.0.0.2 is flapping, causing route churn
+and sustained high CPU from BGP table recalculation.
+
+Recommendation: Stabilize BGP peer 10.0.0.2 — check interface
+to that neighbor for L1 errors, apply dampening if appropriate.
+```
+
+The agent follows the skill's procedure step by step, references threshold tables for classification, uses decision trees for triage logic, and produces a structured report.
+
+## Repository Structure
+
+```
+skills/
+  example-device-health/
+    SKILL.md              # Skill definition (procedure, thresholds, decision trees)
+    references/           # Supporting reference material
+      threshold-tables.md
+      cli-reference.md
+scripts/
+  validate.sh             # Custom convention validator
+.github/
+  workflows/
+    validate.yml           # CI pipeline — runs on push to main and PRs
+```
+
+## Validation
+
+Every skill is validated at two layers:
+
+1. **Spec validation** — `agentskills validate` checks compliance with the Agent Skills SKILL.md specification (frontmatter schema, required fields).
+2. **Convention validation** — `scripts/validate.sh` checks network-security-specific conventions (safety tier metadata, required body sections, `references/` directory).
+
+To run both locally:
+
+```bash
+pip install skills-ref==0.1.1
+agentskills validate skills/
+bash scripts/validate.sh
+```
+
+CI runs both checks automatically on every push to `main` and on pull requests.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete guide on writing skills, format reference, and submission process.
+
+## License
+
+[Apache-2.0](LICENSE)

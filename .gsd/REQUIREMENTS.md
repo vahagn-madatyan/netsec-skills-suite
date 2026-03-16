@@ -6,57 +6,57 @@ This file is the explicit capability and coverage contract for the project.
 
 ### R001 — Monorepo scaffold with skills/ convention
 - Class: core-capability
-- Status: active
+- Status: validated
 - Description: pnpm workspace monorepo with `skills/<name>/SKILL.md` directory convention, package.json, and .gitignore
 - Why it matters: Foundation for all skill distribution — without this, nothing is installable
 - Source: user
 - Primary owning slice: M001/S01
 - Supporting slices: none
-- Validation: unmapped
+- Validation: `npx skills add . --list` discovers skills; `scripts/validate.sh` enforces directory convention
 - Notes: Must match skills.sh discovery expectations (recursive SKILL.md scan)
 
 ### R002 — SKILL.md template with safety tier metadata
 - Class: core-capability
-- Status: active
+- Status: validated
 - Description: Standardized SKILL.md template with safety tier in frontmatter metadata, section structure for procedures/thresholds/decision trees/report templates
 - Why it matters: Consistency across 40+ skills, safety classification for every skill
 - Source: user
 - Primary owning slice: M001/S01
 - Supporting slices: none
-- Validation: unmapped
+- Validation: Skeleton skill passes `agentskills validate` and `scripts/validate.sh`; mutation tests confirm invalid safety values and missing sections are caught
 - Notes: Safety tiers are advisory metadata tags (safety: read-only | read-write)
 
 ### R003 — GitHub Actions validation CI pipeline
 - Class: quality-attribute
-- Status: active
+- Status: validated
 - Description: CI that validates all SKILL.md files on push — checks frontmatter schema, name matching, description length, required sections
 - Why it matters: Prevents broken skills from being published, ensures consistency at scale
 - Source: user
 - Primary owning slice: M001/S01
 - Supporting slices: none
-- Validation: unmapped
+- Validation: `actionlint` confirms workflow syntax (exit 0); two-layer validation wired as separate named steps. Pending first real GitHub Actions run.
 - Notes: Use skills-ref Python library or custom validation script
 
 ### R004 — README with npx skills add install instructions
 - Class: launchability
-- Status: active
+- Status: validated
 - Description: Professional README with install commands, skill catalog table, usage examples, badges
 - Why it matters: First thing users see — must clearly communicate value and installation
 - Source: research
 - Primary owning slice: M001/S01
 - Supporting slices: M001/S02, M001/S03, M001/S04
-- Validation: unmapped
+- Validation: README contains `npx skills add` command, catalog table with Safety Tier column, usage example. Will be updated as skills are added in S02-S04.
 - Notes: Update as skills are added
 
 ### R005 — CONTRIBUTING guide for skill authors
 - Class: operability
-- Status: active
+- Status: validated
 - Description: Guide covering SKILL.md format, safety tier conventions, reference file patterns, validation, PR process
 - Why it matters: Enables community contributions, maintains quality standards
 - Source: research
 - Primary owning slice: M001/S01
 - Supporting slices: none
-- Validation: unmapped
+- Validation: CONTRIBUTING contains frontmatter schema (6 keys), all 7 body sections, safety tier convention, two-layer validation instructions, PR checklist
 - Notes: none
 
 ### R006 — Cisco IOS-XE/NX-OS device health check skill
@@ -485,11 +485,11 @@ This file is the explicit capability and coverage contract for the project.
 
 | ID | Class | Status | Primary owner | Supporting | Proof |
 |---|---|---|---|---|---|
-| R001 | core-capability | active | M001/S01 | none | unmapped |
-| R002 | core-capability | active | M001/S01 | none | unmapped |
-| R003 | quality-attribute | active | M001/S01 | none | unmapped |
-| R004 | launchability | active | M001/S01 | M001/S02-S04 | unmapped |
-| R005 | operability | active | M001/S01 | none | unmapped |
+| R001 | core-capability | validated | M001/S01 | none | S01: `npx skills add . --list` discovers skills, validate.sh enforces convention |
+| R002 | core-capability | validated | M001/S01 | none | S01: passes `agentskills validate` + `scripts/validate.sh`; mutation tests catch violations |
+| R003 | quality-attribute | validated | M001/S01 | none | S01: `actionlint` passes; two-layer CI wired. Pending first GHA run. |
+| R004 | launchability | validated | M001/S01 | M001/S02-S04 | S01: README has install cmd, catalog table, usage example |
+| R005 | operability | validated | M001/S01 | none | S01: CONTRIBUTING has format ref, safety tiers, validation, PR checklist |
 | R006 | core-capability | active | M001/S02 | none | unmapped |
 | R007 | core-capability | active | M001/S02 | none | unmapped |
 | R008 | core-capability | active | M001/S02 | none | unmapped |
@@ -531,7 +531,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 38
-- Mapped to slices: 38
-- Validated: 0
+- Active requirements: 33
+- Mapped to slices: 33
+- Validated: 5 (R001–R005)
 - Unmapped active requirements: 0

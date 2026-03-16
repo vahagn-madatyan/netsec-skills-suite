@@ -51,7 +51,7 @@ This milestone is complete only when all are true:
 
 ## Slices
 
-- [ ] **S01: Monorepo Foundation & Skill Templates** `risk:low` `depends:[]`
+- [x] **S01: Monorepo Foundation & Skill Templates** `risk:low` `depends:[]`
   > After this: repo has skills/ directory convention, SKILL.md template with safety tier metadata, GitHub Actions CI that catches malformed skills, README with install commands, CONTRIBUTING guide. A skeleton example skill validates the full pipeline.
 
 - [ ] **S02: Multi-Vendor Device Health Checks** `risk:medium` `depends:[S01]`

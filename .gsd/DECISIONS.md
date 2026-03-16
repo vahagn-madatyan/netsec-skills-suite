@@ -16,3 +16,7 @@
 | D008 | M001 | scope | Vendor coverage strategy | Multi-vendor breadth (Cisco, Juniper, Arista, Palo Alto, Fortinet, Check Point) | Fill ecosystem gap wide rather than going deep on one vendor | No |
 | D009 | M001 | convention | Monorepo layout | skills/<kebab-name>/SKILL.md with optional references/ | Matches skills.sh discovery convention and agentskills.io spec | No |
 | D010 | M001 | convention | License | Apache-2.0 | Already in repo, matches NetClaw and most skills ecosystem | No |
+| D011 | M001/S01 | convention | agentskills validate invocation | Per-skill-directory, not parent skills/ dir | agentskills CLI only accepts individual skill dirs; custom script and CI iterate over skills/* | No |
+| D012 | M001/S01 | convention | CI action pinning | checkout@v4, setup-python@v5, skills-ref==0.1.1 | Reproducible builds; avoid surprise breakage from upstream changes | Yes — update pins periodically |
+| D013 | M001/S01 | convention | CI permissions | contents: read (least privilege) | No write access needed for validation-only workflow | Yes — if CI needs write |
+| D014 | M001/S01 | convention | README usage example style | Multi-step realistic agent triage interaction | Demonstrates how skills drive agent behavior end-to-end, not just install | No |

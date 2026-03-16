@@ -12,7 +12,7 @@ Deep network engineering and security expertise encoded as portable, agent-agnos
 
 ## Current State
 
-Empty repo with Apache-2.0 license and planning artifacts. No skills written yet.
+Monorepo foundation complete (S01). `skills/` directory convention established with a skeleton Cisco IOS-XE device health check skill proving the full pipeline. Two-layer CI validation (spec + convention) wired in GitHub Actions. README with install commands and catalog table, CONTRIBUTING with format reference and safety tier docs. Ready for S02 (multi-vendor device health check skills).
 
 ## Architecture / Key Patterns
 
