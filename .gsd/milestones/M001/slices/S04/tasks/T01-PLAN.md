@@ -68,6 +68,12 @@ This is the most similar skill to S02's device health checks — it's threshold-
 - `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/interface-health/SKILL.md | wc -w` → ≤ 2700
 - `ls skills/interface-health/references/` → shows `cli-reference.md` and `threshold-tables.md`
 
+## Observability Impact
+
+- **Signals changed:** No runtime signals — this task produces static markdown files only.
+- **Inspection for future agents:** Run `agentskills validate skills/interface-health` (exit 0 = healthy). Run `bash scripts/validate.sh` and check for `interface-health` in output. Word count: `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/interface-health/SKILL.md | wc -w` (must be ≤ 2700).
+- **Failure state visibility:** If SKILL.md is malformed, `agentskills validate` prints specific missing-field errors. If required H2 sections are missing, `validate.sh` prints `ERROR: Missing required section: ## <Name>`. If references/ directory or files are missing, `validate.sh` prints `ERROR: references/ directory missing`.
+
 ## Inputs
 
 - `skills/bgp-analysis/SKILL.md` — Reference for 3-vendor labeling pattern (`[Cisco]`/`[JunOS]`/`[EOS]`) and frontmatter structure

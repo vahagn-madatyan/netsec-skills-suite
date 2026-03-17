@@ -37,7 +37,7 @@
 
 ## Tasks
 
-- [ ] **T01: Create interface-health skill with error counters, optical thresholds, and discard analysis** `est:45m`
+- [x] **T01: Create interface-health skill with error counters, optical thresholds, and discard analysis** `est:45m`
   - Why: Delivers R015 — interface error analysis is the most common physical-layer diagnostic. Threshold-heavy like S02 device health skills, making it a natural first task.
   - Files: `skills/interface-health/SKILL.md`, `skills/interface-health/references/cli-reference.md`, `skills/interface-health/references/threshold-tables.md`
   - Do: Write SKILL.md with 3-vendor labeled procedure covering CRC errors, input/output errors, discards, resets, optical power (dBm), and utilization. Reference `threshold-tables.md` for detailed 4-severity-tier thresholds. `cli-reference.md` for vendor commands. Safety: `read-only`.
@@ -71,6 +71,18 @@
   - Do: Add 4 new rows to the skill catalog table (interface-health, network-topology-discovery, config-management, change-verification) with correct descriptions and safety tiers. Run `bash scripts/validate.sh` to confirm all 12 real skills pass. Run `npx skills add . --list` to confirm discovery. Verify safety tier correctness: config-management and change-verification are `read-write`, all others `read-only`.
   - Verify: `bash scripts/validate.sh` → 12+ skills, 0 errors, PASS; README has 12 real skill rows; `npx skills add . --list` discovers all skills
   - Done when: README catalog has 13 rows (1 example + 12 real), validate.sh PASS across all skills, `npx skills add . --list` works
+
+## Observability / Diagnostics
+
+- **Runtime signals:** None — all deliverables are static markdown files. No runtime processes, APIs, or background services.
+- **Inspection surfaces:**
+  - `agentskills validate skills/<name>` — per-skill structural validation (frontmatter, required fields)
+  - `bash scripts/validate.sh` — suite-wide validation across all skills (safety values, H2 sections, references/ directory)
+  - Word count check: `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/<name>/SKILL.md | wc -w` — body ≤ 2700 words
+  - `ls skills/<name>/references/` — confirms reference file inventory (exactly 2 files per skill)
+  - `npx skills add . --list` — confirms AgentSkills SDK discovers all skills
+- **Failure visibility:** Validation errors surface as named checks (e.g., "Missing required section: ## Procedure") with per-skill error counts. validate.sh exits non-zero and prints `FAIL (N errors)` on any failure.
+- **Redaction constraints:** None — all content is public documentation with no secrets or credentials.
 
 ## Files Likely Touched
 
