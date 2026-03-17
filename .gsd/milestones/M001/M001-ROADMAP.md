@@ -57,7 +57,7 @@ This milestone is complete only when all are true:
 - [x] **S02: Multi-Vendor Device Health Checks** `risk:medium` `depends:[S01]`
   > After this: 3 deep procedural health check skills (Cisco IOS-XE/NX-OS, Juniper JunOS, Arista EOS) with vendor-specific thresholds, decision trees, and structured report templates. Token budget pattern established.
 
-- [ ] **S03: Routing Protocol Analysis Suite** `risk:high` `depends:[S01]`
+- [x] **S03: Routing Protocol Analysis Suite** `risk:high` `depends:[S01]`
   > After this: 4 routing protocol skills (BGP, OSPF, EIGRP, IS-IS) with protocol state machine reasoning, multi-vendor CLI reference tables, adjacency diagnosis decision trees, and convergence analysis. Multi-vendor abstraction pattern proven.
 
 - [ ] **S04: Network Operations & Change Management** `risk:medium` `depends:[S01,S02]`
