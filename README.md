@@ -34,6 +34,10 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [ospf-analysis](skills/ospf-analysis/SKILL.md) | OSPF adjacency diagnosis, area design validation, LSA analysis, SPF convergence (Cisco/JunOS/EOS) | `read-only` |
 | [eigrp-analysis](skills/eigrp-analysis/SKILL.md) | EIGRP DUAL analysis — successor/feasible successor, stuck-in-active diagnosis, K-value validation (Cisco IOS-XE/NX-OS) | `read-only` |
 | [isis-analysis](skills/isis-analysis/SKILL.md) | IS-IS adjacency diagnosis, LSPDB analysis, level 1/2 routing, NET validation (Cisco/JunOS/EOS) | `read-only` |
+| [change-verification](skills/change-verification/SKILL.md) | Pre/post change verification with baseline capture, diff analysis, and rollback guidance (Cisco/JunOS/EOS) | `read-write` |
+| [config-management](skills/config-management/SKILL.md) | Config backup, drift detection, and golden config validation with compliance checking (Cisco/JunOS/EOS) | `read-write` |
+| [interface-health](skills/interface-health/SKILL.md) | Interface error analysis — CRC, discards, resets, optical power monitoring with threshold tables (Cisco/JunOS/EOS) | `read-only` |
+| [network-topology-discovery](skills/network-topology-discovery/SKILL.md) | Network topology discovery via CDP/LLDP, ARP/MAC tables, and routing table analysis (Cisco/JunOS/EOS) | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

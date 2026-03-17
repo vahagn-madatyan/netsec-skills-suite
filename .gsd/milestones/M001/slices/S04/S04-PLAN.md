@@ -65,7 +65,7 @@
   - Verify: `agentskills validate skills/change-verification` → exit 0; `bash scripts/validate.sh` passes; body ≤ 2700 words; frontmatter has `safety: read-write`
   - Done when: SKILL.md has 6 frontmatter keys with `safety: read-write`, 7 H2 sections, body ≤ 2700 words, references/ has 2 files, validate.sh passes
 
-- [ ] **T05: Update README catalog and run final M001 end-to-end validation** `est:20m`
+- [x] **T05: Update README catalog and run final M001 end-to-end validation** `est:20m`
   - Why: Completes R004 (supporting) — README must reflect the full M001 skill catalog. Final validation gate confirms all 12 skills pass, safety tiers are correct, and `npx skills add` discovers everything.
   - Files: `README.md`
   - Do: Add 4 new rows to the skill catalog table (interface-health, network-topology-discovery, config-management, change-verification) with correct descriptions and safety tiers. Run `bash scripts/validate.sh` to confirm all 12 real skills pass. Run `npx skills add . --list` to confirm discovery. Verify safety tier correctness: config-management and change-verification are `read-write`, all others `read-only`.

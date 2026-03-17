@@ -58,6 +58,13 @@ Add 4 new skill rows to the README catalog table and run comprehensive end-to-en
 - `README.md` — existing file with 8 real skill rows + 1 example row
 - `scripts/validate.sh` — validation script
 
+## Observability Impact
+
+- **What changes:** README.md gains 4 new rows in the skill catalog table. No runtime behavior changes — this is a documentation-only task plus validation gate.
+- **How to inspect:** Count skill rows in README: `grep -c 'skills/.*SKILL.md' README.md` → expect 13. Run `bash scripts/validate.sh` for suite-wide validation. Run `npx skills add . --list` for discovery check.
+- **Failure visibility:** Missing or malformed rows cause visual catalog gaps. validate.sh catches structural issues across all skills. Discovery check confirms SDK can find all skills.
+- **No new runtime signals** — all deliverables are static markdown.
+
 ## Expected Output
 
 - `README.md` — Updated with 4 new catalog rows (13 total), complete M001 skill catalog
