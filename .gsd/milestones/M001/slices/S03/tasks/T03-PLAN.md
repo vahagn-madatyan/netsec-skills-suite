@@ -84,3 +84,11 @@ This is the simplest skill in terms of vendor variation (Cisco only, 2 platforms
 - `skills/eigrp-analysis/SKILL.md` — EIGRP protocol analysis skill with dual-platform labeling, DUAL reasoning, ≤2700 word body
 - `skills/eigrp-analysis/references/cli-reference.md` — IOS-XE/NX-OS EIGRP CLI command tables
 - `skills/eigrp-analysis/references/state-machine.md` — DUAL FSM, feasibility condition, query/reply process
+
+## Observability Impact
+
+- **Validation signal:** `agentskills validate skills/eigrp-analysis` exit code (0 = valid, non-0 = broken frontmatter/structure). Also covered by `bash scripts/validate.sh` aggregate PASS/FAIL.
+- **Word budget signal:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/eigrp-analysis/SKILL.md | wc -w` — must be ≤ 2700.
+- **Vendor label signal:** `grep -c '\[IOS-XE\]\|\[NX-OS\]' skills/eigrp-analysis/SKILL.md` — confirms dual-platform labels used (should be >0); `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/eigrp-analysis/SKILL.md` — confirms 3-vendor labels NOT used (should be 0).
+- **Section inspection:** `grep '^## ' skills/eigrp-analysis/SKILL.md` — lists all H2 sections for structural verification.
+- **Failure visibility:** `validate.sh` emits per-skill `ERROR:` lines for missing sections, invalid safety tier, or absent `references/` directory — failures are self-describing.

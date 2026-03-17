@@ -55,7 +55,7 @@
   - Verify: `agentskills validate skills/ospf-analysis` exit 0; body word count ≤ 2700; `bash scripts/validate.sh` shows ospf-analysis PASS
   - Done when: OSPF skill passes all validation, body ≤ 2700 words, 3-vendor pattern consistent with BGP
 
-- [ ] **T03: Write EIGRP analysis skill with Cisco dual-platform labels** `est:30m`
+- [x] **T03: Write EIGRP analysis skill with Cisco dual-platform labels** `est:30m`
   - Why: EIGRP is Cisco-proprietary but still widely deployed. Uses the dual-platform `[IOS-XE]`/`[NX-OS]` pattern from S02 (D015) instead of 3-vendor labels. DUAL FSM is unique. Covers R011.
   - Files: `skills/eigrp-analysis/SKILL.md`, `skills/eigrp-analysis/references/cli-reference.md`, `skills/eigrp-analysis/references/state-machine.md`
   - Do: Create `skills/eigrp-analysis/` directory with 3 files. SKILL.md: frontmatter (name: eigrp-analysis, safety: read-only), all 7 H2 sections. Procedure encodes EIGRP diagnostic reasoning — DUAL algorithm (successor/feasible successor analysis, feasibility condition: reported distance < feasible distance), stuck-in-active diagnosis, K-value validation across neighbors, route redistribution issues. Use `[IOS-XE]`/`[NX-OS]` labels per D015. Decision trees: stuck-in-active triage, successor loss analysis. Threshold Tables: SIA timer defaults, route count norms, hello/hold intervals. cli-reference.md: IOS-XE/NX-OS EIGRP tables. state-machine.md: DUAL FSM, feasibility condition math, SIA process.
