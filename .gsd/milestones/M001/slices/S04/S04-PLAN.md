@@ -58,7 +58,7 @@
   - Verify: `agentskills validate skills/config-management` → exit 0; `bash scripts/validate.sh` passes; body ≤ 2700 words; frontmatter has `safety: read-write`
   - Done when: SKILL.md has 6 frontmatter keys with `safety: read-write`, 7 H2 sections, body ≤ 2700 words, references/ has 2 files, validate.sh passes
 
-- [ ] **T04: Create change-verification skill with pre/post baselines, diff analysis, and rollback guidance** `est:45m`
+- [x] **T04: Create change-verification skill with pre/post baselines, diff analysis, and rollback guidance** `est:45m`
   - Why: Delivers R016 — structured change management prevents outages. Second `read-write` skill. Complementary to config-management but event-driven (specific change window), not ongoing.
   - Files: `skills/change-verification/SKILL.md`, `skills/change-verification/references/cli-reference.md`, `skills/change-verification/references/checklist-templates.md`
   - Do: Write SKILL.md with 3-vendor labeled procedure for pre-change baseline capture, change execution guidance, post-change verification diffs, rollback decision criteria. Offload per-change-type checklists (routing, switching, security, upgrade) to `checklist-templates.md` to stay within word budget. Safety: `read-write`.

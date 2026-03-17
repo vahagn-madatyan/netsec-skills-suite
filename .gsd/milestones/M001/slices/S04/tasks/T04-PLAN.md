@@ -88,3 +88,14 @@ This is the second `read-write` safety tier skill. The `read-write` designation 
 - `skills/change-verification/SKILL.md` — Complete change verification skill with `read-write` safety tier
 - `skills/change-verification/references/cli-reference.md` — Multi-vendor change lifecycle CLI commands
 - `skills/change-verification/references/checklist-templates.md` — Pre/post verification checklists by change type with rollback decision matrix
+
+## Observability Impact
+
+This task produces static markdown files with no runtime behavior. Observability is structural:
+
+- **Validation:** `agentskills validate skills/change-verification` — exits 0 if frontmatter and required fields are correct, non-zero with named error messages otherwise
+- **Suite-wide check:** `bash scripts/validate.sh` — includes change-verification in its scan, reports per-skill pass/fail with named error descriptions
+- **Word budget:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/change-verification/SKILL.md | wc -w` — must be ≤ 2700
+- **Safety tier:** `grep 'safety: read-write' skills/change-verification/SKILL.md` — confirms read-write designation
+- **Reference inventory:** `ls skills/change-verification/references/` — must show exactly `cli-reference.md` and `checklist-templates.md`
+- **Failure state:** Validation errors surface as named checks (e.g., "Missing required section: ## Procedure") with exit code 1
