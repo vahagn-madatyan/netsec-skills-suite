@@ -54,6 +54,13 @@ Close the slice by updating the README.md skill catalog table with 4 new firewal
 - `grep 'Security Skills' README.md` finds the section header
 - Word count check passes for all 4 new skills (all ≤2700)
 
+## Observability Impact
+
+- **Validation surface:** `bash scripts/validate.sh` now reports "Skills checked: 16" (up from 12). Any missing or malformed skill row in README will cause the count to differ from the expected 16.
+- **Catalog inspection:** `grep -c 'firewall-audit' README.md` returns 4 — confirms all 4 firewall skills are cataloged. `grep 'Security Skills' README.md` confirms the section header exists.
+- **Regression detection:** validate.sh output lists each skill with pass/fail. Any M001 skill regression appears as an `ERROR:` line in output. `bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'` returns 0 for clean state.
+- **Failure state:** If a firewall skill row is missing from README or has incorrect formatting, validate.sh will not count it. If the Security Skills header is absent, `grep 'Security Skills' README.md` returns nothing.
+
 ## Inputs
 
 - `skills/palo-alto-firewall-audit/SKILL.md` — T01 output

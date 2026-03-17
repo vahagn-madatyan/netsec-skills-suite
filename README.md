@@ -38,6 +38,11 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [config-management](skills/config-management/SKILL.md) | Config backup, drift detection, and golden config validation with compliance checking (Cisco/JunOS/EOS) | `read-write` |
 | [interface-health](skills/interface-health/SKILL.md) | Interface error analysis — CRC, discards, resets, optical power monitoring with threshold tables (Cisco/JunOS/EOS) | `read-only` |
 | [network-topology-discovery](skills/network-topology-discovery/SKILL.md) | Network topology discovery via CDP/LLDP, ARP/MAC tables, and routing table analysis (Cisco/JunOS/EOS) | `read-only` |
+| **Security Skills** | | |
+| [palo-alto-firewall-audit](skills/palo-alto-firewall-audit/SKILL.md) | PAN-OS zone-based security policy audit — App-ID/Content-ID analysis, Security Profile Group validation, zone protection assessment | `read-only` |
+| [fortigate-firewall-audit](skills/fortigate-firewall-audit/SKILL.md) | FortiGate/FortiOS policy audit — VDOM segmentation analysis, UTM profile binding validation, SD-WAN security assessment | `read-only` |
+| [checkpoint-firewall-audit](skills/checkpoint-firewall-audit/SKILL.md) | Check Point R80+ security policy audit — rulebase layer analysis, blade activation audit, SmartConsole management validation | `read-only` |
+| [cisco-firewall-audit](skills/cisco-firewall-audit/SKILL.md) | Cisco ASA/FTD dual-platform audit — ASA ACL/security-level analysis, FTD Access Control Policy and Snort IPS assessment | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

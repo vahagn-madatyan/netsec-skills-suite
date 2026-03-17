@@ -73,7 +73,7 @@
   - Verify: `bash scripts/validate.sh` passes; both skills ≤2700 body words; vendor-specific grep checks pass for each
   - Done when: Both `skills/checkpoint-firewall-audit/` and `skills/cisco-firewall-audit/` exist with valid SKILL.md + 2 reference files each, pass validate.sh, contain vendor-specific policy evaluation content
 
-- [ ] **T04: Update README catalog with 4 firewall audit skills and run full 16-skill validation** `est:30m`
+- [x] **T04: Update README catalog with 4 firewall audit skills and run full 16-skill validation** `est:30m`
   - Why: Closes the slice by updating the user-facing catalog and performing comprehensive validation across all 16 skills. The README is the first thing users see (R004) — it must reflect the new security skills.
   - Files: `README.md`
   - Do: Add a "**Security Skills**" section header row to the README catalog table (after the existing 12 M001 skills). Add 4 new rows for the firewall audit skills with accurate descriptions and `read-only` safety tier. Descriptions must mention vendor-specific capabilities (e.g., "PAN-OS zone-based policy audit with App-ID/Content-ID analysis" not "firewall audit"). Run full validation suite: `bash scripts/validate.sh` (expect 16 skills, 0 errors), word count check on all 4 new skills, `npx skills add . --list` to verify discovery. Verify no M001 regression by confirming all 12 original skills still pass.
