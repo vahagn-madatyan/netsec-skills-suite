@@ -70,6 +70,16 @@ Unlike threshold-based skills, this one has a unique iterative procedure shape: 
 - `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/network-topology-discovery/SKILL.md | wc -w` → ≤ 2700
 - `ls skills/network-topology-discovery/references/` → shows `cli-reference.md` and `discovery-workflow.md`
 
+## Observability Impact
+
+This task produces static markdown files with no runtime behavior. Inspection surfaces:
+
+- **Structural validation:** `agentskills validate skills/network-topology-discovery` — checks frontmatter keys, required fields
+- **Suite validation:** `bash scripts/validate.sh` — checks safety values, H2 sections, references/ directory across all skills
+- **Word count:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/network-topology-discovery/SKILL.md | wc -w` — body ≤ 2700 words
+- **Reference inventory:** `ls skills/network-topology-discovery/references/` — confirms cli-reference.md and discovery-workflow.md
+- **Failure visibility:** Validation errors surface as named checks with per-skill error counts. validate.sh exits non-zero on any failure.
+
 ## Inputs
 
 - `skills/bgp-analysis/SKILL.md` — Reference for 3-vendor labeling pattern and frontmatter structure

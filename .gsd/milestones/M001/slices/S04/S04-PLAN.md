@@ -44,7 +44,7 @@
   - Verify: `agentskills validate skills/interface-health` → exit 0; `bash scripts/validate.sh` passes; body ≤ 2700 words
   - Done when: SKILL.md has 6 frontmatter keys with `safety: read-only`, 7 H2 sections, body ≤ 2700 words, references/ has 2 files, validate.sh passes
 
-- [ ] **T02: Create network-topology-discovery skill with CDP/LLDP, ARP/MAC, and routing table analysis** `est:45m`
+- [x] **T02: Create network-topology-discovery skill with CDP/LLDP, ARP/MAC, and routing table analysis** `est:45m`
   - Why: Delivers R013 — topology understanding is prerequisite to most network troubleshooting. Introduces a unique iterative discovery procedure shape (layer-by-layer map building).
   - Files: `skills/network-topology-discovery/SKILL.md`, `skills/network-topology-discovery/references/cli-reference.md`, `skills/network-topology-discovery/references/discovery-workflow.md`
   - Do: Write SKILL.md with 3-vendor labeled procedure for L2 discovery (CDP/LLDP), L3 discovery (routing tables, ARP), MAC table correlation, and topology map construction. Reference `discovery-workflow.md` for methodology. Safety: `read-only`.
