@@ -1,9 +1,9 @@
 # GSD State
 
 **Active Milestone:** M001: Foundation & Network Device Skills
-**Active Slice:** S03: Routing Protocol Analysis Suite
+**Active Slice:** S04: Network Operations & Change Management
 **Phase:** executing
-**Requirements Status:** 38 active · 0 validated · 3 deferred · 2 out of scope
+**Requirements Status:** 26 active · 12 validated · 3 deferred · 2 out of scope
 
 ## Milestone Registry
 - 🔄 **M001:** Foundation & Network Device Skills
@@ -11,11 +11,10 @@
 - ⬜ **M003:** M003
 
 ## Recent Decisions
-- D019: Reference file convention — state-machine.md replaces threshold-tables.md for routing protocol skills
-- D021: Multi-vendor labeling — [Cisco]/[JunOS]/[EOS] inline with 1 cmd per vendor per step
+- None recorded
 
 ## Blockers
 - None
 
 ## Next Action
-Execute T01: Write BGP analysis skill with 3-vendor pattern proof.
+Execute T01 of S04 (interface-health skill).
