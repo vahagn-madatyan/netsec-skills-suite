@@ -4,50 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R017 — PAN-OS security policy audit — rule analysis, zone segmentation, threat prevention profile validation, best practice assessment
-- Class: core-capability
-- Status: active
-- Description: PAN-OS security policy audit — rule analysis, zone segmentation, threat prevention profile validation, best practice assessment
-- Why it matters: Palo Alto is the #1 enterprise firewall vendor — biggest gap vs NetClaw
-- Source: user
-- Primary owning slice: M002/S01
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
-### R018 — FortiGate policy audit — rule optimization, VDOM analysis, UTM profile validation, SD-WAN security assessment
-- Class: core-capability
-- Status: active
-- Description: FortiGate policy audit — rule optimization, VDOM analysis, UTM profile validation, SD-WAN security assessment
-- Why it matters: Second largest firewall market share — enterprise staple
-- Source: user
-- Primary owning slice: M002/S01
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
-### R019 — Check Point policy audit — rulebase analysis, blade activation, SmartConsole management validation
-- Class: core-capability
-- Status: active
-- Description: Check Point policy audit — rulebase analysis, blade activation, SmartConsole management validation
-- Why it matters: Third major firewall vendor — completes the big three
-- Source: user
-- Primary owning slice: M002/S01
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
-### R020 — ASA/FTD security audit — ACL analysis, NAT policy validation, Firepower IPS assessment
-- Class: core-capability
-- Status: active
-- Description: ASA/FTD security audit — ACL analysis, NAT policy validation, Firepower IPS assessment
-- Why it matters: Still heavily deployed in Cisco shops
-- Source: user
-- Primary owning slice: M002/S01
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
 ### R021 — Vendor-agnostic ACL/rule analysis — shadowed rules, overly permissive rules, rule ordering optimization, unused rule detection
 - Class: core-capability
 - Status: active
@@ -424,6 +380,50 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: skills/change-verification/SKILL.md passes validate.sh (0 errors), body 2475 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 6-step event-driven procedure with pre-change baseline, change scope documentation, commit-confirm execution, post-change verification diffs, 4-tier impact classification, rollback decision criteria. references/ includes cli-reference.md and checklist-templates.md with 4 change-type checklists and rollback decision matrix.
 - Notes: safety: read-write
 
+### R017 — PAN-OS security policy audit — rule analysis, zone segmentation, threat prevention profile validation, best practice assessment
+- Class: core-capability
+- Status: validated
+- Description: PAN-OS security policy audit — rule analysis, zone segmentation, threat prevention profile validation, best practice assessment
+- Why it matters: Palo Alto is the #1 enterprise firewall vendor — biggest gap vs NetClaw
+- Source: user
+- Primary owning slice: M002/S01
+- Supporting slices: none
+- Validation: skills/palo-alto-firewall-audit/SKILL.md passes validate.sh, encodes zone-based architecture, App-ID/Content-ID/URL-ID chain, Security Profile Groups, Zone Protection Profiles, decryption policy review. 1941 body words. references/policy-model.md + cli-reference.md present.
+- Notes: none
+
+### R018 — FortiGate policy audit — rule optimization, VDOM analysis, UTM profile validation, SD-WAN security assessment
+- Class: core-capability
+- Status: validated
+- Description: FortiGate policy audit — rule optimization, VDOM analysis, UTM profile validation, SD-WAN security assessment
+- Why it matters: Second largest firewall market share — enterprise staple
+- Source: user
+- Primary owning slice: M002/S01
+- Supporting slices: none
+- Validation: skills/fortigate-firewall-audit/SKILL.md passes validate.sh, encodes VDOM segmentation, UTM profile binding, FortiGuard service validation, SD-WAN SLA evaluation, HA posture. 2692 body words. references/policy-model.md + cli-reference.md present.
+- Notes: none
+
+### R019 — Check Point policy audit — rulebase analysis, blade activation, SmartConsole management validation
+- Class: core-capability
+- Status: validated
+- Description: Check Point policy audit — rulebase analysis, blade activation, SmartConsole management validation
+- Why it matters: Third major firewall vendor — completes the big three
+- Source: user
+- Primary owning slice: M002/S01
+- Supporting slices: none
+- Validation: skills/checkpoint-firewall-audit/SKILL.md passes validate.sh, encodes R80+ rulebase ordered/inline layers, blade activation audit, SIC verification, SmartConsole management validation, identity awareness. 2537 body words. references/policy-model.md + cli-reference.md present.
+- Notes: none
+
+### R020 — ASA/FTD security audit — ACL analysis, NAT policy validation, Firepower IPS assessment
+- Class: core-capability
+- Status: validated
+- Description: ASA/FTD security audit — ACL analysis, NAT policy validation, Firepower IPS assessment
+- Why it matters: Still heavily deployed in Cisco shops
+- Source: user
+- Primary owning slice: M002/S01
+- Supporting slices: none
+- Validation: skills/cisco-firewall-audit/SKILL.md passes validate.sh, encodes dual-platform ASA security-levels/ACL/MPF + FTD ACP/Snort evaluation chain using [ASA]/[FTD] labels. 2694 body words. references/policy-model.md + cli-reference.md present.
+- Notes: none
+
 ## Deferred
 
 ### R039 — Lightweight MCP server wrappers that connect skills to specific tool backends
@@ -503,10 +503,10 @@ This file is the explicit capability and coverage contract for the project.
 | R014 | core-capability | validated | M001/S04 | none | skills/config-management/SKILL.md passes validate.sh (0 errors), body 2049 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 7-step procedure with config backup, running-vs-startup comparison, golden config baseline, section-by-section drift detection, compliance validation (REQ/FRB patterns), remediation with rollback. references/ includes cli-reference.md and drift-detection.md. |
 | R015 | core-capability | validated | M001/S04 | none | skills/interface-health/SKILL.md passes validate.sh (0 errors), body 2176 words (≤2700), safety: read-only, 3-vendor Cisco/JunOS/EOS labels, 6-step procedure covering CRC/input/output errors, discards, resets, optical power (5 SFP types with per-lane breakdown), utilization. references/ includes cli-reference.md and threshold-tables.md with 4-severity-tier thresholds. |
 | R016 | core-capability | validated | M001/S04 | none | skills/change-verification/SKILL.md passes validate.sh (0 errors), body 2475 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 6-step event-driven procedure with pre-change baseline, change scope documentation, commit-confirm execution, post-change verification diffs, 4-tier impact classification, rollback decision criteria. references/ includes cli-reference.md and checklist-templates.md with 4 change-type checklists and rollback decision matrix. |
-| R017 | core-capability | active | M002/S01 | none | unmapped |
-| R018 | core-capability | active | M002/S01 | none | unmapped |
-| R019 | core-capability | active | M002/S01 | none | unmapped |
-| R020 | core-capability | active | M002/S01 | none | unmapped |
+| R017 | core-capability | validated | M002/S01 | none | skills/palo-alto-firewall-audit/SKILL.md passes validate.sh, encodes zone-based architecture, App-ID/Content-ID/URL-ID chain, Security Profile Groups, Zone Protection Profiles, decryption policy review. 1941 body words. references/policy-model.md + cli-reference.md present. |
+| R018 | core-capability | validated | M002/S01 | none | skills/fortigate-firewall-audit/SKILL.md passes validate.sh, encodes VDOM segmentation, UTM profile binding, FortiGuard service validation, SD-WAN SLA evaluation, HA posture. 2692 body words. references/policy-model.md + cli-reference.md present. |
+| R019 | core-capability | validated | M002/S01 | none | skills/checkpoint-firewall-audit/SKILL.md passes validate.sh, encodes R80+ rulebase ordered/inline layers, blade activation audit, SIC verification, SmartConsole management validation, identity awareness. 2537 body words. references/policy-model.md + cli-reference.md present. |
+| R020 | core-capability | validated | M002/S01 | none | skills/cisco-firewall-audit/SKILL.md passes validate.sh, encodes dual-platform ASA security-levels/ACL/MPF + FTD ACP/Snort evaluation chain using [ASA]/[FTD] labels. 2694 body words. references/policy-model.md + cli-reference.md present. |
 | R021 | core-capability | active | M002/S02 | none | unmapped |
 | R022 | compliance/security | active | M002/S02 | none | unmapped |
 | R023 | compliance/security | active | M002/S02 | none | unmapped |
@@ -533,7 +533,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 22
-- Mapped to slices: 22
-- Validated: 16 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016)
+- Active requirements: 18
+- Mapped to slices: 18
+- Validated: 20 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020)
 - Unmapped active requirements: 0

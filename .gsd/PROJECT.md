@@ -12,7 +12,7 @@ Deep network engineering and security expertise encoded as portable, agent-agnos
 
 ## Current State
 
-M001 complete — all 4 slices delivered. 12 skills total (1 example + 11 real) pass validation. S01 established the monorepo foundation, CI pipeline, and SKILL.md template. S02 delivered 3 multi-vendor device health skills (Cisco, Juniper, Arista). S03 delivered 4 routing protocol analysis skills (BGP, OSPF, EIGRP, IS-IS). S04 delivered 4 network operations skills (interface-health, network-topology-discovery, config-management, change-verification) including the first 2 read-write safety tier skills. README catalog is complete, `npx skills add . --list` discovers all skills, `bash scripts/validate.sh` passes with 0 errors. R001–R016 validated. Ready for M002 (Security Skills).
+M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S01 complete — delivered 4 vendor-specific firewall audit skills (PAN-OS, FortiGate, Check Point, Cisco ASA/FTD) with 12 reference files. Suite now has 16 skills total, all passing `bash scripts/validate.sh` with 0 errors. R001–R020 validated. Key M002 risk retired: 2700-word budget works for security audit skills with vendor detail offloaded to references/. "Policy audit" procedure shape established. S02 (compliance), S03 (security operations), S04 (remaining security + finalization) remain.
 
 ## Architecture / Key Patterns
 

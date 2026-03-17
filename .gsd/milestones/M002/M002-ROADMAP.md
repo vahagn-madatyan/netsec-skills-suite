@@ -55,7 +55,7 @@ This milestone is complete only when all are true:
 
 ## Slices
 
-- [ ] **S01: Vendor-Specific Firewall Audit Skills** `risk:high` `depends:[]`
+- [x] **S01: Vendor-Specific Firewall Audit Skills** `risk:high` `depends:[]`
   > After this: `bash scripts/validate.sh` passes 16 skills (12 M001 + 4 new firewall), each firewall skill encodes vendor-specific policy analysis with `references/policy-model.md` and `references/cli-reference.md`, README catalog updated with 4 new rows
 - [ ] **S02: Rule Analysis & Compliance Skills** `risk:medium` `depends:[S01]`
   > After this: `bash scripts/validate.sh` passes 19 skills, CIS benchmark skill references actual control IDs in `references/control-reference.md` without reproducing copyrighted text, NIST skill maps network security to CSF Protect/Detect functions, README catalog updated with 3 new rows
