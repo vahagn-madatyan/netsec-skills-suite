@@ -62,7 +62,7 @@
   - Verify: `agentskills validate skills/eigrp-analysis` exit 0; body word count ≤ 2700; `bash scripts/validate.sh` shows eigrp-analysis PASS
   - Done when: EIGRP skill passes all validation, body ≤ 2700 words, uses `[IOS-XE]`/`[NX-OS]` labels (not 3-vendor)
 
-- [ ] **T04: Write IS-IS analysis skill and update README catalog** `est:35m`
+- [x] **T04: Write IS-IS analysis skill and update README catalog** `est:35m`
   - Why: IS-IS is the final routing protocol skill. 3-vendor coverage. Also updates README with all 4 new skill catalog rows to close the slice. Covers R012 and supports R004.
   - Files: `skills/isis-analysis/SKILL.md`, `skills/isis-analysis/references/cli-reference.md`, `skills/isis-analysis/references/state-machine.md`, `README.md`
   - Do: Create `skills/isis-analysis/` directory with 3 files. SKILL.md: frontmatter (name: isis-analysis, safety: read-only), all 7 H2 sections. Procedure encodes IS-IS diagnostic reasoning — adjacency diagnosis (DIS election, level 1/2 adjacency requirements), NET address validation, LSPDB analysis (LSP lifetime, sequence numbers, purges), TLV analysis, level 1/2 routing and route leaking. Use `[Cisco]`/`[JunOS]`/`[EOS]` labels, 1 command per vendor per step. Decision trees: adjacency failure triage, LSPDB inconsistency diagnosis. Threshold Tables: hello interval defaults, LSP lifetime norms, CSNP/PSNP intervals. cli-reference.md: 3-vendor IS-IS tables. state-machine.md: IS-IS adjacency states and LSPDB flooding mechanics. Then update README.md: add 4 new rows to the Skill Catalog table (bgp-analysis, ospf-analysis, eigrp-analysis, isis-analysis) with descriptions and `read-only` safety tier. Place them after the existing device health rows.

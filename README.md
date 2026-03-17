@@ -30,6 +30,10 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [cisco-device-health](skills/cisco-device-health/SKILL.md) | Cisco IOS-XE and NX-OS dual-platform device health check with QFP/RP and VDC-aware triage | `read-only` |
 | [juniper-device-health](skills/juniper-device-health/SKILL.md) | Juniper JunOS device health check with RE/PFE separation, alarm-first triage, and dual-RE failover detection | `read-only` |
 | [arista-device-health](skills/arista-device-health/SKILL.md) | Arista EOS device health check with agent monitoring, MLAG state validation, and VXLAN/EVPN DC extensions | `read-only` |
+| [bgp-analysis](skills/bgp-analysis/SKILL.md) | BGP protocol analysis — peer state diagnosis, path selection, route filtering, convergence (Cisco/JunOS/EOS) | `read-only` |
+| [ospf-analysis](skills/ospf-analysis/SKILL.md) | OSPF adjacency diagnosis, area design validation, LSA analysis, SPF convergence (Cisco/JunOS/EOS) | `read-only` |
+| [eigrp-analysis](skills/eigrp-analysis/SKILL.md) | EIGRP DUAL analysis — successor/feasible successor, stuck-in-active diagnosis, K-value validation (Cisco IOS-XE/NX-OS) | `read-only` |
+| [isis-analysis](skills/isis-analysis/SKILL.md) | IS-IS adjacency diagnosis, LSPDB analysis, level 1/2 routing, NET validation (Cisco/JunOS/EOS) | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

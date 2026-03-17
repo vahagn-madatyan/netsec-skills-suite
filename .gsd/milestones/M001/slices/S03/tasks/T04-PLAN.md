@@ -92,6 +92,15 @@ The README update adds bgp-analysis, ospf-analysis, eigrp-analysis, and isis-ana
 - `README.md` — Current catalog table with 4 existing skills (add 4 new rows after the last device health row)
 - `scripts/validate.sh` — Validator for final full-suite verification
 
+## Observability Impact
+
+- **Validation signals:** `agentskills validate skills/isis-analysis` exit code confirms frontmatter spec compliance. `bash scripts/validate.sh` checks all 8 skills including IS-IS for metadata.safety, required H2 sections, and references/ directory.
+- **Word budget signal:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/isis-analysis/SKILL.md | wc -w` — must be ≤ 2700.
+- **Vendor label count:** `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/isis-analysis/SKILL.md` — confirms 3-vendor labeling coverage in procedure.
+- **README catalog completeness:** `grep -c 'bgp-analysis\|ospf-analysis\|eigrp-analysis\|isis-analysis' README.md` — must be 4 (one per new skill).
+- **Failure visibility:** `validate.sh` emits per-skill `ERROR:` lines for missing sections, invalid safety tier, or absent `references/` directory. Missing README rows are detectable by grep count < 4.
+- **Inspection surfaces:** Each SKILL.md body can be inspected with `grep '^## '` for section presence. Reference files can be checked with `ls skills/isis-analysis/references/`.
+
 ## Expected Output
 
 - `skills/isis-analysis/SKILL.md` — IS-IS protocol analysis skill with 3-vendor labeling, ≤2700 word body
