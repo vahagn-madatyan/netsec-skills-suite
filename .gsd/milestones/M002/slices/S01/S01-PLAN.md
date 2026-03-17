@@ -64,7 +64,7 @@
   - Verify: `bash scripts/validate.sh` passes; `wc -w` body ≤2700; `grep -l 'VDOM\|UTM' skills/fortigate-firewall-audit/SKILL.md` finds matches
   - Done when: `skills/fortigate-firewall-audit/` exists with SKILL.md (≤2700 body words, valid frontmatter, all 7 sections) + 2 reference files, passes validate.sh, contains FortiOS-specific content
 
-- [ ] **T03: Author Check Point and Cisco ASA/FTD firewall audit skills** `est:1h30m`
+- [x] **T03: Author Check Point and Cisco ASA/FTD firewall audit skills** `est:1h30m`
   - Why: Completes the four-vendor firewall coverage. Check Point (rulebase layers, blades, SmartConsole) and Cisco ASA/FTD (dual-platform: ASA security levels + FTD Access Control Policy) are the remaining two vendors. Both follow the proven pattern from T01–T02. Covers R019 and R020.
   - Files: `skills/checkpoint-firewall-audit/SKILL.md`, `skills/checkpoint-firewall-audit/references/policy-model.md`, `skills/checkpoint-firewall-audit/references/cli-reference.md`, `skills/cisco-firewall-audit/SKILL.md`, `skills/cisco-firewall-audit/references/policy-model.md`, `skills/cisco-firewall-audit/references/cli-reference.md`
   - Do: Create both skill directories following the established pattern.

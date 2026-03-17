@@ -102,3 +102,10 @@ These are combined in one task because the pattern is now established — the ex
 - `skills/cisco-firewall-audit/SKILL.md` — complete Cisco ASA/FTD dual-platform audit skill
 - `skills/cisco-firewall-audit/references/policy-model.md` — ASA + FTD policy models
 - `skills/cisco-firewall-audit/references/cli-reference.md` — dual-platform CLI commands
+
+## Observability Impact
+
+- **Validation surface:** `bash scripts/validate.sh` gains two new skills in its pass/fail output — `checkpoint-firewall-audit` and `cisco-firewall-audit`. Skill count increases from 14 to 16 (or 12→14 if run before T01/T02).
+- **Word budget inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/checkpoint-firewall-audit/SKILL.md | wc -w` and same for `cisco-firewall-audit` — must return ≤2700.
+- **Vendor specificity signals:** `grep -l 'rulebase layer\|blade' skills/checkpoint-firewall-audit/SKILL.md` and `grep -l 'security-level\|Access Control Policy\|FTD' skills/cisco-firewall-audit/SKILL.md` — confirm vendor-specific content, not generic boilerplate.
+- **Failure state:** validate.sh prints `ERROR: <reason>` lines to stderr for each failed check. A missing H2 section or absent references/ directory produces a named error.
