@@ -83,6 +83,13 @@ Follow the "policy audit" procedure shape (Decision D028): systematic rule-by-ru
 - Decision D027: all M002 skills are safety: read-only
 - Decision D028: "policy audit" procedure shape — systematic rule-by-rule analysis
 
+## Observability Impact
+
+- **New validation surface:** `bash scripts/validate.sh` now discovers and validates `skills/palo-alto-firewall-audit/`. Output includes per-check OK/ERROR lines for this skill's frontmatter safety, 7 H2 sections, and references/ directory.
+- **Word budget signal:** `sed '1,/^---$/d' skills/palo-alto-firewall-audit/SKILL.md | sed '1,/^---$/d' | wc -w` — body word count must remain ≤2700. Future edits can re-run to verify budget.
+- **Vendor specificity signal:** `grep -l 'App-ID\|Content-ID\|zone' skills/palo-alto-firewall-audit/SKILL.md` — confirms PAN-OS-specific content hasn't been diluted into generic firewall advice.
+- **Failure artifact:** If validate.sh fails for this skill, stderr contains named errors (e.g., "Missing required section: ## Procedure") for immediate diagnosis.
+
 ## Expected Output
 
 - `skills/palo-alto-firewall-audit/SKILL.md` — complete PAN-OS firewall audit skill with vendor-specific content

@@ -32,6 +32,15 @@
 - `grep -l 'VDOM\|UTM' skills/fortigate-firewall-audit/SKILL.md` confirms vendor specificity
 - `grep -l 'rulebase layer\|blade' skills/checkpoint-firewall-audit/SKILL.md` confirms vendor specificity
 - `grep -l 'security-level\|Access Control Policy\|FTD' skills/cisco-firewall-audit/SKILL.md` confirms vendor specificity
+- `bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'` returns 0 — confirms no failure diagnostics emitted
+
+## Observability / Diagnostics
+
+- **Validation surface:** `bash scripts/validate.sh` reports per-skill pass/fail with named error reasons (missing section, bad safety value, missing references/). Exit code 0 = all pass, 1 = any fail. Skill count in output confirms discovery.
+- **Word budget inspection:** `sed '1,/^---$/d' skills/SKILLNAME/SKILL.md | sed '1,/^---$/d' | wc -w` — per-skill body word count. Must be ≤2700.
+- **Vendor specificity check:** `grep -l 'VENDOR_TERM' skills/SKILLNAME/SKILL.md` — confirms vendor-specific content is present, not generic firewall boilerplate.
+- **Failure state visibility:** validate.sh prints `ERROR: <reason>` lines to stderr for each failed check, making failure diagnosis immediate. The error count is summarized at the end.
+- **Redaction:** No secrets or credentials in skill files. All CLI commands are read-only `show`/`get`/`diagnose` — no configuration-modifying commands.
 
 ## Integration Closure
 
@@ -41,7 +50,7 @@
 
 ## Tasks
 
-- [ ] **T01: Author PAN-OS firewall audit skill with policy-model and CLI references** `est:1h`
+- [x] **T01: Author PAN-OS firewall audit skill with policy-model and CLI references** `est:1h`
   - Why: PAN-OS is the most complex vendor policy model (zone-based profiles, App-ID/Content-ID/URL-ID chain, Security Profile Groups). Building it first retires the key risk — if PAN-OS fits within ~2700 words with overflow to `references/`, the other three vendors will too. Covers R017.
   - Files: `skills/palo-alto-firewall-audit/SKILL.md`, `skills/palo-alto-firewall-audit/references/policy-model.md`, `skills/palo-alto-firewall-audit/references/cli-reference.md`
   - Do: Create `skills/palo-alto-firewall-audit/` directory with SKILL.md following the established template (see `skills/bgp-analysis/SKILL.md` for format). Frontmatter must have `name: palo-alto-firewall-audit`, `metadata.safety: read-only`. Body must contain all 7 required H2 sections: "When to Use", "Prerequisites", "Procedure", "Threshold Tables", "Decision Trees", "Report Template", "Troubleshooting". Procedure must use "policy audit" shape (D028): systematic rule-by-rule analysis. Encode PAN-OS specifics: zone-based architecture, security policy evaluation order (intrazone → interzone → universal), App-ID flow (L4 session → App-ID → Content-ID → URL-ID), Security Profile Groups (AV, AS, VP, URL, FB, WF, DP), Zone Protection Profiles, DoS Protection. CLI reference file should use `show` and `set`/`test` read-only commands (PA-OS `show running security`, `show running zone`, `test security-policy-match`). Policy model reference should document the evaluation chain.
