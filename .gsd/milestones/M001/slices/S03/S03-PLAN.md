@@ -41,7 +41,7 @@
 
 ## Tasks
 
-- [ ] **T01: Write BGP analysis skill with 3-vendor pattern proof** `est:45m`
+- [x] **T01: Write BGP analysis skill with 3-vendor pattern proof** `est:45m`
   - Why: BGP is the most complex routing protocol skill and proves the 3-vendor (`[Cisco]`/`[JunOS]`/`[EOS]`) labeling pattern. Must be written first to validate word budget and readability before committing to the pattern for OSPF and IS-IS. Covers R009.
   - Files: `skills/bgp-analysis/SKILL.md`, `skills/bgp-analysis/references/cli-reference.md`, `skills/bgp-analysis/references/state-machine.md`
   - Do: Create `skills/bgp-analysis/` directory with 3 files. SKILL.md: frontmatter (name: bgp-analysis, safety: read-only), all 7 H2 sections. Procedure encodes BGP diagnostic reasoning — peer state diagnosis via FSM interpretation (Idle→Connect→Active→OpenSent→OpenConfirm→Established), path selection analysis (AS path, local pref, MED, weight), route filtering validation, convergence assessment. Use `[Cisco]`/`[JunOS]`/`[EOS]` labels with 1 command per vendor per step. Decision trees must encode reasoning chains (e.g., "peer stuck in Active → TCP connects but no OPEN → check remote config, ACLs, peer AS"). Threshold Tables section contains operational parameter norms (hold timer defaults, table size norms, convergence targets). cli-reference.md: full 3-vendor command tables by diagnostic category. state-machine.md: BGP FSM states, transition triggers, stuck-state causes.
@@ -68,6 +68,14 @@
   - Do: Create `skills/isis-analysis/` directory with 3 files. SKILL.md: frontmatter (name: isis-analysis, safety: read-only), all 7 H2 sections. Procedure encodes IS-IS diagnostic reasoning — adjacency diagnosis (DIS election, level 1/2 adjacency requirements), NET address validation, LSPDB analysis (LSP lifetime, sequence numbers, purges), TLV analysis, level 1/2 routing and route leaking. Use `[Cisco]`/`[JunOS]`/`[EOS]` labels, 1 command per vendor per step. Decision trees: adjacency failure triage, LSPDB inconsistency diagnosis. Threshold Tables: hello interval defaults, LSP lifetime norms, CSNP/PSNP intervals. cli-reference.md: 3-vendor IS-IS tables. state-machine.md: IS-IS adjacency states and LSPDB flooding mechanics. Then update README.md: add 4 new rows to the Skill Catalog table (bgp-analysis, ospf-analysis, eigrp-analysis, isis-analysis) with descriptions and `read-only` safety tier. Place them after the existing device health rows.
   - Verify: `agentskills validate skills/isis-analysis` exit 0; body word count ≤ 2700; `bash scripts/validate.sh` → all 8 skills PASS, 0 errors; README contains all 4 new catalog rows
   - Done when: IS-IS skill passes all validation, README updated with 4 routing protocol skills, full `scripts/validate.sh` passes with 0 errors across all 8 skills
+
+## Observability / Diagnostics
+
+- **Validation signals:** `agentskills validate skills/<name>` exit code per skill; `bash scripts/validate.sh` aggregate PASS/FAIL with per-skill error counts
+- **Word budget signal:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/<name>/SKILL.md | wc -w` — must be ≤ 2700 per skill
+- **Inspection surfaces:** Each `SKILL.md` body can be inspected for H2 section presence, vendor label count (`grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]'`), and command-per-step density
+- **Failure visibility:** `validate.sh` emits per-skill `ERROR:` lines for missing sections, invalid safety tier, or absent `references/` directory — failures are self-describing
+- **Redaction constraints:** None — all content is static markdown with no secrets or runtime state
 
 ## Files Likely Touched
 

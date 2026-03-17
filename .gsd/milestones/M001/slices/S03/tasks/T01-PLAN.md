@@ -81,6 +81,14 @@ The key shift from S02's device health skills: health checks are command-driven 
 - `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/bgp-analysis/SKILL.md | wc -w` → ≤ 2700
 - `bash scripts/validate.sh` → bgp-analysis: all checks OK, overall PASS
 
+## Observability Impact
+
+- **New validation signal:** `agentskills validate skills/bgp-analysis` — exit 0 confirms frontmatter schema and structural validity
+- **Word budget check:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/bgp-analysis/SKILL.md | wc -w` → must be ≤ 2700
+- **Vendor label coverage:** `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/bgp-analysis/SKILL.md` — confirms 3-vendor labeling throughout procedure
+- **Failure visibility:** `bash scripts/validate.sh` emits `ERROR:` lines per missing section or invalid safety value — failures are self-describing
+- **Inspection surface:** `references/cli-reference.md` and `references/state-machine.md` can be `cat`/`wc` inspected for completeness
+
 ## Inputs
 
 - `skills/cisco-device-health/SKILL.md` — Reference for frontmatter schema, H2 section names, and `[IOS-XE]`/`[NX-OS]` labeling pattern (adapt to `[Cisco]`/`[JunOS]`/`[EOS]` for 3-vendor)
