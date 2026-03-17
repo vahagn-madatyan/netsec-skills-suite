@@ -30,6 +30,6 @@ See `.gsd/REQUIREMENTS.md` for the explicit capability contract, requirement sta
 
 ## Milestone Sequence
 
-- [ ] M001: Foundation & Network Device Skills — monorepo scaffold, validation CI, 15+ network device and routing protocol skills
+- [ ] M001: Foundation & Network Device Skills — monorepo scaffold, validation CI, 12+ network device and routing protocol skills
 - [ ] M002: Security Skills — firewall auditing, compliance frameworks, vulnerability management, incident response
 - [ ] M003: Cloud, Infrastructure & Observability — cloud networking, SOT integration, monitoring, log analysis

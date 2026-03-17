@@ -1,12 +1,12 @@
 # M001: Foundation & Network Device Skills
 
-**Vision:** Establish the monorepo foundation and deliver 15+ network device skills that fill the complete gap in the skills.sh ecosystem — multi-vendor device health checks, routing protocol analysis with state machine reasoning, and network operations workflows. Every skill encodes deep procedural knowledge with threshold tables, decision trees, and report templates.
+**Vision:** Establish the monorepo foundation and deliver 12+ network device skills that fill the complete gap in the skills.sh ecosystem — multi-vendor device health checks, routing protocol analysis with state machine reasoning, and network operations workflows. Every skill encodes deep procedural knowledge with threshold tables, decision trees, and report templates.
 
 ## Success Criteria
 
 - `npx skills add` discovers and installs all skills from the repo
 - GitHub Actions CI validates all SKILL.md files on every push (frontmatter, naming, sections)
-- 15+ skills covering Cisco, Juniper, and Arista across device health, routing protocols, and network ops
+- 12+ skills covering Cisco, Juniper, and Arista across device health, routing protocols, and network ops
 - Every skill has safety tier metadata, threshold tables, decision trees, and structured report templates
 - Skills are agent-agnostic — no dependency on specific tools or MCP servers
 - Bundled reference files provide progressive disclosure depth
@@ -34,7 +34,7 @@
 
 This milestone is complete only when all are true:
 
-- All 15+ SKILL.md files pass GitHub Actions CI validation
+- All 12+ SKILL.md files pass GitHub Actions CI validation
 - Every skill has: safety tier metadata, threshold tables, decision trees, report template, references/ subdirectory
 - `npx skills add <owner>/network-security-skills-suite` discovers and presents all skills for selection
 - README has install commands, skill catalog table with descriptions and safety tiers, usage examples
