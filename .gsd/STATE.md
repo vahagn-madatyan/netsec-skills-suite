@@ -1,9 +1,9 @@
 # GSD State
 
 **Active Milestone:** M002: Security Skills
-**Active Slice:** S01: Vendor-Specific Firewall Audit Skills
+**Active Slice:** S02: Rule Analysis & Compliance Skills
 **Phase:** executing
-**Requirements Status:** 22 active · 16 validated · 3 deferred · 2 out of scope
+**Requirements Status:** 18 active · 20 validated · 3 deferred · 2 out of scope
 
 ## Milestone Registry
 - ✅ **M001:** Foundation & Network Device Skills
@@ -17,4 +17,4 @@
 - None
 
 ## Next Action
-Execute T01 of slice S01 (Author PAN-OS firewall audit skill).
+Execute T01 of S02 (ACL rule analysis skill).
