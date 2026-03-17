@@ -73,6 +73,13 @@ This is the first `read-write` safety tier skill in the repo. The `read-write` d
 - `grep 'safety: read-write' skills/config-management/SKILL.md` → matches
 - `ls skills/config-management/references/` → shows `cli-reference.md` and `drift-detection.md`
 
+## Observability Impact
+
+- **New inspection surfaces:** `agentskills validate skills/config-management` validates frontmatter and structure; `bash scripts/validate.sh` includes config-management in suite-wide checks; `grep 'safety: read-write'` confirms first read-write skill in the repo.
+- **Failure visibility:** Validation errors name the missing section or invalid field. validate.sh exits non-zero with `FAIL (N errors)` on any structural issue.
+- **How a future agent inspects this task:** Run `agentskills validate skills/config-management` (exit 0 = healthy), check body word count with awk pipeline (≤ 2700), verify `ls skills/config-management/references/` shows 2 files.
+- **No runtime signals** — this is static markdown content with no processes or APIs.
+
 ## Inputs
 
 - `skills/bgp-analysis/SKILL.md` — Reference for 3-vendor labeling pattern and frontmatter structure

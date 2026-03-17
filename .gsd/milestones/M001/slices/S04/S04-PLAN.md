@@ -51,7 +51,7 @@
   - Verify: `agentskills validate skills/network-topology-discovery` → exit 0; `bash scripts/validate.sh` passes; body ≤ 2700 words
   - Done when: SKILL.md has 6 frontmatter keys with `safety: read-only`, 7 H2 sections, body ≤ 2700 words, references/ has 2 files, validate.sh passes
 
-- [ ] **T03: Create config-management skill with backup, drift detection, and golden config validation** `est:45m`
+- [x] **T03: Create config-management skill with backup, drift detection, and golden config validation** `est:45m`
   - Why: Delivers R014 — config drift is the #1 cause of network outages. First `read-write` safety tier skill in the repo.
   - Files: `skills/config-management/SKILL.md`, `skills/config-management/references/cli-reference.md`, `skills/config-management/references/drift-detection.md`
   - Do: Write SKILL.md with 3-vendor labeled procedure for config backup/export, running-vs-startup comparison, golden config validation, section-by-section drift analysis. Reference `drift-detection.md` for comparison methodology. Safety: `read-write`. Keep scope to ongoing drift detection — change verification is T04's scope.
