@@ -60,7 +60,7 @@ This milestone is complete only when all are true:
 - [x] **S03: Routing Protocol Analysis Suite** `risk:high` `depends:[S01]`
   > After this: 4 routing protocol skills (BGP, OSPF, EIGRP, IS-IS) with protocol state machine reasoning, multi-vendor CLI reference tables, adjacency diagnosis decision trees, and convergence analysis. Multi-vendor abstraction pattern proven.
 
-- [ ] **S04: Network Operations & Change Management** `risk:medium` `depends:[S01,S02]`
+- [x] **S04: Network Operations & Change Management** `risk:medium` `depends:[S01,S02]`
   > After this: 4 network operations skills (topology discovery, config management/drift detection, interface health monitoring, change pre/post verification). Complete M001 skill set validated end-to-end via `npx skills add`.
 
 ## Boundary Map

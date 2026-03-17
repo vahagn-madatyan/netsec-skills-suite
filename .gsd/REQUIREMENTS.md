@@ -4,50 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R013 — Guide agent through topology discovery using CDP/LLDP, routing tables, ARP/MAC tables to build network maps
-- Class: core-capability
-- Status: active
-- Description: Guide agent through topology discovery using CDP/LLDP, routing tables, ARP/MAC tables to build network maps
-- Why it matters: Understanding topology is prerequisite to most network troubleshooting
-- Source: user
-- Primary owning slice: M001/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Tool-agnostic — agent uses whatever access method is available
-
-### R014 — Procedural skill for config backup, comparison, drift detection, golden config validation
-- Class: core-capability
-- Status: active
-- Description: Procedural skill for config backup, comparison, drift detection, golden config validation
-- Why it matters: Config drift is the #1 cause of network outages
-- Source: user
-- Primary owning slice: M001/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: safety: read-write (involves config operations)
-
-### R015 — Interface error analysis — CRC, input/output errors, discards, resets, optical power levels, threshold tables
-- Class: core-capability
-- Status: active
-- Description: Interface error analysis — CRC, input/output errors, discards, resets, optical power levels, threshold tables
-- Why it matters: Physical layer issues are the most common and most misdiagnosed problems
-- Source: user
-- Primary owning slice: M001/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Includes optical transceiver thresholds
-
-### R016 — Structured pre-change baseline capture, change execution guidance, post-change verification with diff analysis
-- Class: core-capability
-- Status: active
-- Description: Structured pre-change baseline capture, change execution guidance, post-change verification with diff analysis
-- Why it matters: Change management discipline prevents outages — this is the safety net
-- Source: research
-- Primary owning slice: M001/S04
-- Supporting slices: none
-- Validation: unmapped
-- Notes: safety: read-write
-
 ### R017 — PAN-OS security policy audit — rule analysis, zone segmentation, threat prevention profile validation, best practice assessment
 - Class: core-capability
 - Status: active
@@ -333,7 +289,7 @@ This file is the explicit capability and coverage contract for the project.
 - Source: research
 - Primary owning slice: M001/S01
 - Supporting slices: M001/S02, M001/S03, M001/S04
-- Validation: README contains `npx skills add` command, catalog table with Safety Tier column, usage example. Will be updated as skills are added in S02-S04.
+- Validation: README contains `npx skills add` command, catalog table with 12 rows (1 example + 11 real skills) with Safety Tier column, usage example. All S02–S04 skills reflected. `npx skills add . --list` discovers all 12 skills.
 - Notes: Update as skills are added
 
 ### R005 — Guide covering SKILL.md format, safety tier conventions, reference file patterns, validation, PR process
@@ -424,6 +380,50 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: skills/isis-analysis/SKILL.md passes agentskills validate (exit 0), body 2496 words (≤2700), 3-vendor Cisco/JunOS/EOS labels (16 occurrences), IS-IS adjacency FSM (3 states), DIS election, LSPDB analysis (LSP lifetime, purges, fragmentation), level 1/2 routing, NET address validation, TLV analysis. references/ includes cli-reference.md and state-machine.md.
 - Notes: Cover Cisco, Juniper, Arista
 
+### R013 — Guide agent through topology discovery using CDP/LLDP, routing tables, ARP/MAC tables to build network maps
+- Class: core-capability
+- Status: validated
+- Description: Guide agent through topology discovery using CDP/LLDP, routing tables, ARP/MAC tables to build network maps
+- Why it matters: Understanding topology is prerequisite to most network troubleshooting
+- Source: user
+- Primary owning slice: M001/S04
+- Supporting slices: none
+- Validation: skills/network-topology-discovery/SKILL.md passes validate.sh (0 errors), body 2272 words (≤2700), 3-vendor Cisco/JunOS/EOS labels, 6-step iterative L2→L3 procedure with seed expansion algorithm, CDP/LLDP discovery, ARP/MAC correlation, routing table analysis, topology consolidation. references/ includes cli-reference.md and discovery-workflow.md.
+- Notes: Tool-agnostic — agent uses whatever access method is available
+
+### R014 — Procedural skill for config backup, comparison, drift detection, golden config validation
+- Class: core-capability
+- Status: validated
+- Description: Procedural skill for config backup, comparison, drift detection, golden config validation
+- Why it matters: Config drift is the #1 cause of network outages
+- Source: user
+- Primary owning slice: M001/S04
+- Supporting slices: none
+- Validation: skills/config-management/SKILL.md passes validate.sh (0 errors), body 2049 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 7-step procedure with config backup, running-vs-startup comparison, golden config baseline, section-by-section drift detection, compliance validation (REQ/FRB patterns), remediation with rollback. references/ includes cli-reference.md and drift-detection.md.
+- Notes: safety: read-write (involves config operations)
+
+### R015 — Interface error analysis — CRC, input/output errors, discards, resets, optical power levels, threshold tables
+- Class: core-capability
+- Status: validated
+- Description: Interface error analysis — CRC, input/output errors, discards, resets, optical power levels, threshold tables
+- Why it matters: Physical layer issues are the most common and most misdiagnosed problems
+- Source: user
+- Primary owning slice: M001/S04
+- Supporting slices: none
+- Validation: skills/interface-health/SKILL.md passes validate.sh (0 errors), body 2176 words (≤2700), safety: read-only, 3-vendor Cisco/JunOS/EOS labels, 6-step procedure covering CRC/input/output errors, discards, resets, optical power (5 SFP types with per-lane breakdown), utilization. references/ includes cli-reference.md and threshold-tables.md with 4-severity-tier thresholds.
+- Notes: Includes optical transceiver thresholds
+
+### R016 — Structured pre-change baseline capture, change execution guidance, post-change verification with diff analysis
+- Class: core-capability
+- Status: validated
+- Description: Structured pre-change baseline capture, change execution guidance, post-change verification with diff analysis
+- Why it matters: Change management discipline prevents outages — this is the safety net
+- Source: research
+- Primary owning slice: M001/S04
+- Supporting slices: none
+- Validation: skills/change-verification/SKILL.md passes validate.sh (0 errors), body 2475 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 6-step event-driven procedure with pre-change baseline, change scope documentation, commit-confirm execution, post-change verification diffs, 4-tier impact classification, rollback decision criteria. references/ includes cli-reference.md and checklist-templates.md with 4 change-type checklists and rollback decision matrix.
+- Notes: safety: read-write
+
 ## Deferred
 
 ### R039 — Lightweight MCP server wrappers that connect skills to specific tool backends
@@ -490,7 +490,7 @@ This file is the explicit capability and coverage contract for the project.
 | R001 | core-capability | validated | M001/S01 | none | `npx skills add . --list` discovers skills; `scripts/validate.sh` enforces directory convention |
 | R002 | core-capability | validated | M001/S01 | none | Skeleton skill passes `agentskills validate` and `scripts/validate.sh`; mutation tests confirm invalid safety values and missing sections are caught |
 | R003 | quality-attribute | validated | M001/S01 | none | `actionlint` confirms workflow syntax (exit 0); two-layer validation wired as separate named steps. Pending first real GitHub Actions run. |
-| R004 | launchability | validated | M001/S01 | M001/S02, M001/S03, M001/S04 | README contains `npx skills add` command, catalog table with Safety Tier column, usage example. Will be updated as skills are added in S02-S04. |
+| R004 | launchability | validated | M001/S01 | M001/S02, M001/S03, M001/S04 | README contains `npx skills add` command, catalog table with 12 rows (1 example + 11 real skills) with Safety Tier column, usage example. All S02–S04 skills reflected. `npx skills add . --list` discovers all 12 skills. |
 | R005 | operability | validated | M001/S01 | none | CONTRIBUTING contains frontmatter schema (6 keys), all 7 body sections, safety tier convention, two-layer validation instructions, PR checklist |
 | R006 | core-capability | validated | M001/S02 | none | S02: `agentskills validate` exit 0, `scripts/validate.sh` PASS, body 1708 words ≤ 2700, dual-platform IOS-XE/NX-OS coverage confirmed |
 | R007 | core-capability | validated | M001/S02 | none | S02: `agentskills validate` exit 0, `scripts/validate.sh` PASS, body 2326 words ≤ 2700, RE/PFE separation and alarm-first triage confirmed |
@@ -499,10 +499,10 @@ This file is the explicit capability and coverage contract for the project.
 | R010 | core-capability | validated | M001/S03 | none | skills/ospf-analysis/SKILL.md passes agentskills validate (exit 0), body 2229 words (≤2700), 3-vendor Cisco/JunOS/EOS labels (16 occurrences), OSPF neighbor FSM (8 states) with stuck-state diagnosis, area design validation (stub/NSSA/backbone), LSA analysis (types 1-5, 7), SPF convergence. references/ includes cli-reference.md and state-machine.md. |
 | R011 | core-capability | validated | M001/S03 | none | skills/eigrp-analysis/SKILL.md passes agentskills validate (exit 0), body 2047 words (≤2700), dual-platform IOS-XE/NX-OS labels (13 occurrences, 0 3-vendor labels), DUAL FSM with successor/feasible successor analysis, stuck-in-active diagnosis, K-value validation, feasibility condition math. references/ includes cli-reference.md and state-machine.md. |
 | R012 | core-capability | validated | M001/S03 | none | skills/isis-analysis/SKILL.md passes agentskills validate (exit 0), body 2496 words (≤2700), 3-vendor Cisco/JunOS/EOS labels (16 occurrences), IS-IS adjacency FSM (3 states), DIS election, LSPDB analysis (LSP lifetime, purges, fragmentation), level 1/2 routing, NET address validation, TLV analysis. references/ includes cli-reference.md and state-machine.md. |
-| R013 | core-capability | active | M001/S04 | none | unmapped |
-| R014 | core-capability | active | M001/S04 | none | unmapped |
-| R015 | core-capability | active | M001/S04 | none | unmapped |
-| R016 | core-capability | active | M001/S04 | none | unmapped |
+| R013 | core-capability | validated | M001/S04 | none | skills/network-topology-discovery/SKILL.md passes validate.sh (0 errors), body 2272 words (≤2700), 3-vendor Cisco/JunOS/EOS labels, 6-step iterative L2→L3 procedure with seed expansion algorithm, CDP/LLDP discovery, ARP/MAC correlation, routing table analysis, topology consolidation. references/ includes cli-reference.md and discovery-workflow.md. |
+| R014 | core-capability | validated | M001/S04 | none | skills/config-management/SKILL.md passes validate.sh (0 errors), body 2049 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 7-step procedure with config backup, running-vs-startup comparison, golden config baseline, section-by-section drift detection, compliance validation (REQ/FRB patterns), remediation with rollback. references/ includes cli-reference.md and drift-detection.md. |
+| R015 | core-capability | validated | M001/S04 | none | skills/interface-health/SKILL.md passes validate.sh (0 errors), body 2176 words (≤2700), safety: read-only, 3-vendor Cisco/JunOS/EOS labels, 6-step procedure covering CRC/input/output errors, discards, resets, optical power (5 SFP types with per-lane breakdown), utilization. references/ includes cli-reference.md and threshold-tables.md with 4-severity-tier thresholds. |
+| R016 | core-capability | validated | M001/S04 | none | skills/change-verification/SKILL.md passes validate.sh (0 errors), body 2475 words (≤2700), safety: read-write, 3-vendor Cisco/JunOS/EOS labels, 6-step event-driven procedure with pre-change baseline, change scope documentation, commit-confirm execution, post-change verification diffs, 4-tier impact classification, rollback decision criteria. references/ includes cli-reference.md and checklist-templates.md with 4 change-type checklists and rollback decision matrix. |
 | R017 | core-capability | active | M002/S01 | none | unmapped |
 | R018 | core-capability | active | M002/S01 | none | unmapped |
 | R019 | core-capability | active | M002/S01 | none | unmapped |
@@ -533,7 +533,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 26
-- Mapped to slices: 26
-- Validated: 12 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012)
+- Active requirements: 22
+- Mapped to slices: 22
+- Validated: 16 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016)
 - Unmapped active requirements: 0
