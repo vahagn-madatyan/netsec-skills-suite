@@ -48,7 +48,7 @@
   - Verify: `agentskills validate skills/bgp-analysis` exit 0; body word count ≤ 2700; `bash scripts/validate.sh` shows bgp-analysis PASS
   - Done when: BGP skill passes all validation, body ≤ 2700 words, 3-vendor labeling is scannable and proven
 
-- [ ] **T02: Write OSPF analysis skill reusing 3-vendor pattern** `est:35m`
+- [x] **T02: Write OSPF analysis skill reusing 3-vendor pattern** `est:35m`
   - Why: OSPF is the most common enterprise IGP. Reuses the 3-vendor pattern proven in T01 with a different FSM (Down→Init→2-Way→ExStart→Exchange→Loading→Full). Covers R010.
   - Files: `skills/ospf-analysis/SKILL.md`, `skills/ospf-analysis/references/cli-reference.md`, `skills/ospf-analysis/references/state-machine.md`
   - Do: Create `skills/ospf-analysis/` directory with 3 files. SKILL.md: frontmatter (name: ospf-analysis, safety: read-only), all 7 H2 sections. Procedure encodes OSPF diagnostic reasoning — adjacency diagnosis (stuck-state interpretation per FSM), area design validation (stub/NSSA/backbone connectivity), LSA analysis (type 1-5,7 interpretation), SPF convergence assessment. Use `[Cisco]`/`[JunOS]`/`[EOS]` labels, 1 command per vendor per step. Decision trees encode adjacency stuck-state diagnosis (ExStart stuck = MTU mismatch or DR/BDR election issue). Threshold Tables: hello/dead interval defaults, LSA age norms, SPF run frequency. cli-reference.md: 3-vendor OSPF tables. state-machine.md: OSPF neighbor FSM with stuck-state diagnosis.

@@ -84,3 +84,11 @@ Follow the same structural pattern as T01's BGP skill: protocol-first reasoning 
 - `skills/ospf-analysis/SKILL.md` — OSPF protocol analysis skill with 3-vendor labeling, adjacency diagnosis reasoning, ≤2700 word body
 - `skills/ospf-analysis/references/cli-reference.md` — Full 3-vendor OSPF CLI command tables
 - `skills/ospf-analysis/references/state-machine.md` — OSPF neighbor FSM states, transitions, stuck-state causes
+
+## Observability Impact
+
+- **New validation target:** `agentskills validate skills/ospf-analysis` becomes a new exit-0 check — failure means frontmatter or structure is invalid.
+- **Word budget signal:** `awk 'BEGIN{c=0}/^---$/{c++;if(c==2){f=1;next}}f{print}' skills/ospf-analysis/SKILL.md | wc -w` — must return ≤ 2700. Exceeding indicates content needs to be moved to references/.
+- **Aggregate validation:** `bash scripts/validate.sh` now covers ospf-analysis in addition to existing skills. Per-skill ERROR lines identify specific failures (missing H2 sections, invalid safety tier, absent references/).
+- **Vendor label density:** `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/ospf-analysis/SKILL.md` — should return ≥10 (2+ labels per procedure step × 5 steps). Low count indicates vendor coverage gaps.
+- **Failure state visibility:** If ospf-analysis is missing or malformed, `validate.sh` will emit `ERROR:` lines scoped to `ospf-analysis` — failures are self-identifying without manual inspection.
