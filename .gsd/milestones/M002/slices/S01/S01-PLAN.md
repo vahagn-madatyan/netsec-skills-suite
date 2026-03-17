@@ -57,7 +57,7 @@
   - Verify: `bash scripts/validate.sh` passes with skill counted; `wc -w` body ≤2700; `grep -l 'App-ID\|Content-ID\|zone' skills/palo-alto-firewall-audit/SKILL.md` finds matches
   - Done when: `skills/palo-alto-firewall-audit/` exists with SKILL.md (≤2700 body words, valid frontmatter, all 7 sections) + 2 reference files, passes validate.sh, contains PAN-OS-specific policy evaluation content
 
-- [ ] **T02: Author FortiGate firewall audit skill with VDOM/UTM model and CLI references** `est:1h`
+- [x] **T02: Author FortiGate firewall audit skill with VDOM/UTM model and CLI references** `est:1h`
   - Why: FortiGate is the second largest firewall vendor with a fundamentally different architecture (VDOM segmentation, UTM profiles, FortiGuard integration, SD-WAN SLA). Confirms the pattern established by T01 transfers to a different vendor model. Covers R018.
   - Files: `skills/fortigate-firewall-audit/SKILL.md`, `skills/fortigate-firewall-audit/references/policy-model.md`, `skills/fortigate-firewall-audit/references/cli-reference.md`
   - Do: Create `skills/fortigate-firewall-audit/` directory. Follow same template as T01's PAN-OS skill but with FortiOS-specific content. Encode: VDOM architecture (root VDOM, management VDOM, inter-VDOM links), FortiOS policy evaluation (interface-pair policy lookup, policy ID ordering, implicit deny), UTM profile types (antivirus, web-filter, application-control, IPS, email-filter, DLP), FortiGuard service validation, SD-WAN SLA monitoring and rule-based traffic steering security implications. CLI reference should use FortiOS `diagnose` and `get`/`show` commands (`get firewall policy`, `diagnose sys session list`, `get system status`). Policy model reference should document VDOM segmentation and UTM inspection chain.

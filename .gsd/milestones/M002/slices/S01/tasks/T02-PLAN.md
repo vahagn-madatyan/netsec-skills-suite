@@ -83,3 +83,11 @@ The skill must encode real FortiOS expertise. Follow the "policy audit" procedur
 - `skills/fortigate-firewall-audit/SKILL.md` — complete FortiGate firewall audit skill with FortiOS-specific content
 - `skills/fortigate-firewall-audit/references/policy-model.md` — FortiOS VDOM/UTM policy evaluation documentation
 - `skills/fortigate-firewall-audit/references/cli-reference.md` — read-only FortiOS CLI commands in tabular format
+
+## Observability Impact
+
+- **Validation surface:** `bash scripts/validate.sh` includes this skill in its discovery loop. Passes when frontmatter has `metadata.safety: read-only`, all 7 required H2 sections exist, and `references/` directory is present. Skill count increments from 13 to 14.
+- **Word budget inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/fortigate-firewall-audit/SKILL.md | wc -w` — body word count, must be ≤2700.
+- **Vendor specificity signals:** `grep -l 'VDOM\|UTM' skills/fortigate-firewall-audit/SKILL.md` and `grep -l 'FortiGuard\|SD-WAN' skills/fortigate-firewall-audit/SKILL.md` confirm FortiOS-specific content, not generic boilerplate.
+- **Failure state visibility:** If SKILL.md is malformed, `validate.sh` emits `ERROR: <reason>` lines to stderr for each failed check.
+- **No runtime signals:** Skill files are static markdown — no runtime processes, logs, or endpoints to monitor.
