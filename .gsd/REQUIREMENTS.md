@@ -4,39 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R024 — CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization, patch guidance
-- Class: core-capability
-- Status: active
-- Description: CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization, patch guidance
-- Why it matters: Unpatched network devices are a top attack vector
-- Source: user
-- Primary owning slice: M002/S03
-- Supporting slices: none
-- Validation: unmapped
-- Notes: References NVD database
-
-### R025 — SIEM log analysis — syslog parsing, event correlation, alert triage, threat hunting queries
-- Class: core-capability
-- Status: active
-- Description: SIEM log analysis — syslog parsing, event correlation, alert triage, threat hunting queries
-- Why it matters: SIEM is the center of security operations
-- Source: user
-- Primary owning slice: M002/S03
-- Supporting slices: none
-- Validation: unmapped
-- Notes: Vendor-agnostic (Splunk, ELK, QRadar patterns)
-
-### R026 — Network forensics during incident response — traffic analysis, lateral movement detection, containment procedures, evidence preservation
-- Class: core-capability
-- Status: active
-- Description: Network forensics during incident response — traffic analysis, lateral movement detection, containment procedures, evidence preservation
-- Why it matters: Network evidence is critical during security incidents
-- Source: research
-- Primary owning slice: M002/S03
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
 ### R027 — IPSec/IKE troubleshooting — phase 1/2 negotiation analysis, SA lifetime management, crypto mismatch diagnosis
 - Class: core-capability
 - Status: active
@@ -424,6 +391,39 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: skills/nist-compliance-assessment/SKILL.md passes validate.sh (0 errors), body 2664 words ≤2700, 6 NIST 800-53 Rev 5 control families (AC/AU/CM/IA/SC/SI) mapped to CSF Protect/Detect functions, ~37 controls with L/M/H baseline applicability columns, 4-vendor inline labels (45 instances). references/ includes control-reference.md + cli-reference.md.
 - Notes: none
 
+### R024 — CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization, patch guidance
+- Class: core-capability
+- Status: validated
+- Description: CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization, patch guidance
+- Why it matters: Unpatched network devices are a top attack vector
+- Source: user
+- Primary owning slice: M002/S03
+- Supporting slices: none
+- Validation: skills/vulnerability-assessment/SKILL.md passes validate.sh (0 errors), body 2446 words (≤2700), 5-vendor [Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate] version retrieval, 79 CVE/CVSS/NVD term occurrences, CVSS v3.1 scoring with severity-to-SLA mapping, CPE construction, NVD API query, CISA KEV integration. references/ includes cli-reference.md + vulnerability-reference.md.
+- Notes: References NVD database
+
+### R025 — SIEM log analysis — syslog parsing, event correlation, alert triage, threat hunting queries
+- Class: core-capability
+- Status: validated
+- Description: SIEM log analysis — syslog parsing, event correlation, alert triage, threat hunting queries
+- Why it matters: SIEM is the center of security operations
+- Source: user
+- Primary owning slice: M002/S03
+- Supporting slices: none
+- Validation: skills/siem-log-analysis/SKILL.md passes validate.sh (0 errors), body 2682 words (≤2700), 24 [Splunk]/[ELK]/[QRadar] label instances (≥10 required), 7 network-security-specific use cases (auth failures, config changes, firewall denies, interface events, VPN tunnels, anomalous traffic, lateral movement), platform-independent diagnostic reasoning with platform-specific SPL/KQL/AQL queries. references/ includes cli-reference.md + query-reference.md. M002 SIEM vendor fragmentation risk retired.
+- Notes: Vendor-agnostic (Splunk, ELK, QRadar patterns)
+
+### R026 — Network forensics during incident response — traffic analysis, lateral movement detection, containment procedures, evidence preservation
+- Class: core-capability
+- Status: validated
+- Description: Network forensics during incident response — traffic analysis, lateral movement detection, containment procedures, evidence preservation
+- Why it matters: Network evidence is critical during security incidents
+- Source: research
+- Primary owning slice: M002/S03
+- Supporting slices: none
+- Validation: skills/incident-response-network/SKILL.md passes validate.sh (0 errors), body 2698 words (≤2700), 21 [Cisco]/[JunOS]/[EOS] vendor labels, 61 forensic term occurrences (lateral movement/packet capture/netflow/evidence), 6-step evidence-driven lifecycle (preserve → triage → detect → verify → reconstruct → document), read-only containment verification per D027/D030, evidence ordered by volatility. Scoped to network forensics only — no endpoint/malware/general IR. references/ includes cli-reference.md + forensics-workflow.md.
+- Notes: none
+
 ## Deferred
 
 ### R039 — Lightweight MCP server wrappers that connect skills to specific tool backends
@@ -510,9 +510,9 @@ This file is the explicit capability and coverage contract for the project.
 | R021 | core-capability | validated | M002/S02 | none | skills/acl-rule-analysis/SKILL.md passes validate.sh (0 errors), body 2458 words ≤2700, 6-vendor inline labels ([Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate]/[CheckPoint]) with shadowed rule detection, overly permissive rule flagging, unused rule discovery, redundant rule identification, rule ordering optimization. references/ includes cli-reference.md + rule-patterns.md. |
 | R022 | compliance/security | validated | M002/S02 | none | skills/cis-benchmark-audit/SKILL.md passes validate.sh (0 errors), body 2237 words ≤2700, 4-platform coverage (Cisco IOS, PAN-OS, JunOS, Check Point), Management/Control/Data Plane compliance assessment, control-reference.md cites 69 CIS control IDs with 0 reproduced benchmark text (Remediation:/Rationale: grep returns 0). D026 copyright risk retired. |
 | R023 | compliance/security | validated | M002/S02 | none | skills/nist-compliance-assessment/SKILL.md passes validate.sh (0 errors), body 2664 words ≤2700, 6 NIST 800-53 Rev 5 control families (AC/AU/CM/IA/SC/SI) mapped to CSF Protect/Detect functions, ~37 controls with L/M/H baseline applicability columns, 4-vendor inline labels (45 instances). references/ includes control-reference.md + cli-reference.md. |
-| R024 | core-capability | active | M002/S03 | none | unmapped |
-| R025 | core-capability | active | M002/S03 | none | unmapped |
-| R026 | core-capability | active | M002/S03 | none | unmapped |
+| R024 | core-capability | validated | M002/S03 | none | skills/vulnerability-assessment/SKILL.md passes validate.sh (0 errors), body 2446 words (≤2700), 5-vendor [Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate] version retrieval, 79 CVE/CVSS/NVD term occurrences, CVSS v3.1 scoring with severity-to-SLA mapping, CPE construction, NVD API query, CISA KEV integration. references/ includes cli-reference.md + vulnerability-reference.md. |
+| R025 | core-capability | validated | M002/S03 | none | skills/siem-log-analysis/SKILL.md passes validate.sh (0 errors), body 2682 words (≤2700), 24 [Splunk]/[ELK]/[QRadar] label instances (≥10 required), 7 network-security-specific use cases (auth failures, config changes, firewall denies, interface events, VPN tunnels, anomalous traffic, lateral movement), platform-independent diagnostic reasoning with platform-specific SPL/KQL/AQL queries. references/ includes cli-reference.md + query-reference.md. M002 SIEM vendor fragmentation risk retired. |
+| R026 | core-capability | validated | M002/S03 | none | skills/incident-response-network/SKILL.md passes validate.sh (0 errors), body 2698 words (≤2700), 21 [Cisco]/[JunOS]/[EOS] vendor labels, 61 forensic term occurrences (lateral movement/packet capture/netflow/evidence), 6-step evidence-driven lifecycle (preserve → triage → detect → verify → reconstruct → document), read-only containment verification per D027/D030, evidence ordered by volatility. Scoped to network forensics only — no endpoint/malware/general IR. references/ includes cli-reference.md + forensics-workflow.md. |
 | R027 | core-capability | active | M002/S04 | none | unmapped |
 | R028 | core-capability | active | M002/S04 | none | unmapped |
 | R029 | core-capability | active | M002/S04 | none | unmapped |
@@ -533,7 +533,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 15
-- Mapped to slices: 15
-- Validated: 23 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020, R021, R022, R023)
+- Active requirements: 12
+- Mapped to slices: 12
+- Validated: 26 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020, R021, R022, R023, R024, R025, R026)
 - Unmapped active requirements: 0

@@ -59,7 +59,7 @@ This milestone is complete only when all are true:
   > After this: `bash scripts/validate.sh` passes 16 skills (12 M001 + 4 new firewall), each firewall skill encodes vendor-specific policy analysis with `references/policy-model.md` and `references/cli-reference.md`, README catalog updated with 4 new rows
 - [x] **S02: Rule Analysis & Compliance Skills** `risk:medium` `depends:[S01]`
   > After this: `bash scripts/validate.sh` passes 19 skills, ACL rule analysis skill detects shadowed/overly permissive rules, CIS benchmark skill references actual control IDs in `references/control-reference.md` without reproducing copyrighted text, NIST skill maps network security to CSF Protect/Detect functions, README catalog updated with 3 new rows
-- [ ] **S03: Security Operations Skills** `risk:medium` `depends:[S01]`
+- [x] **S03: Security Operations Skills** `risk:medium` `depends:[S01]`
   > After this: `bash scripts/validate.sh` passes 22 skills, CVE assessment skill maps versions to CVEs and prioritizes patches, SIEM skill uses `[Splunk]`/`[ELK]`/`[QRadar]` labeled query patterns, incident response skill focuses on network forensics evidence (not general IR), README catalog updated with 3 new rows
 - [ ] **S04: Additional Security Skills & Suite Finalization** `risk:low` `depends:[S01]`
   > After this: `bash scripts/validate.sh` passes 25 skills, `npx skills add . --list` discovers all 25, VPN/IPSec skill reuses FSM pattern from M001, zero-trust skill introduces maturity scoring rubric, README catalog complete with all 13 M002 skills and "Security Skills" section header

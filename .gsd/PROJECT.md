@@ -12,7 +12,7 @@ Deep network engineering and security expertise encoded as portable, agent-agnos
 
 ## Current State
 
-M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S01 complete — delivered 4 vendor-specific firewall audit skills. M002 S02 complete — delivered 3 rule analysis and compliance skills (acl-rule-analysis, cis-benchmark-audit, nist-compliance-assessment), retiring D026 CIS copyright risk. Suite now has 19 skills total, all passing `bash scripts/validate.sh` with 0 errors. R001–R023 validated. "Compliance assessment" procedure shape established. S03 (security operations) and S04 (remaining security + finalization) remain.
+M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S01 complete — delivered 4 vendor-specific firewall audit skills. M002 S02 complete — delivered 3 rule analysis and compliance skills (acl-rule-analysis, cis-benchmark-audit, nist-compliance-assessment), retiring D026 CIS copyright risk. M002 S03 complete — delivered 3 security operations skills (vulnerability-assessment, siem-log-analysis, incident-response-network), retiring M002 SIEM vendor fragmentation risk (D029). Suite now has 22 skills total, all passing `bash scripts/validate.sh` with 0 errors. R001–R026 validated. S04 (VPN, zero-trust, wireless + suite finalization) remains.
 
 ## Architecture / Key Patterns
 
@@ -23,7 +23,7 @@ M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S
 - **Progressive disclosure:** Tier 1 (name+description ~100 tokens) → Tier 2 (full SKILL.md body <5000 tokens) → Tier 3 (reference files on demand)
 - **Distribution:** `npx skills add owner/repo` via skills.sh, GitHub Actions CI validation
 - **Vendor coverage:** Multi-vendor (Cisco, Juniper, Arista) with `[Cisco]`/`[JunOS]`/`[EOS]` inline labels; Cisco-only skills use `[IOS-XE]`/`[NX-OS]`
-- **Procedure shapes:** Threshold-comparison (device health, interface health), protocol state machine (routing), iterative seed expansion (topology discovery), event-driven lifecycle (change verification), ongoing monitoring (config management)
+- **Procedure shapes:** Threshold-comparison (device health, interface health, vulnerability assessment), protocol state machine (routing), iterative seed expansion (topology discovery), event-driven lifecycle (change verification), ongoing monitoring (config management), policy audit (firewall), compliance assessment (CIS/NIST), forensic timeline (incident response, SIEM), maturity scoring (zero-trust)
 
 ## Capability Contract
 
