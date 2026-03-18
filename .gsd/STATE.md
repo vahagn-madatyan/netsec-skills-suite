@@ -1,9 +1,9 @@
 # GSD State
 
 **Active Milestone:** M002: Security Skills
-**Active Slice:** S03: Security Operations Skills
+**Active Slice:** S04: Additional Security Skills & Suite Finalization
 **Phase:** executing
-**Requirements Status:** 15 active · 23 validated · 3 deferred · 2 out of scope
+**Requirements Status:** 12 active · 26 validated · 3 deferred · 2 out of scope
 
 ## Milestone Registry
 - ✅ **M001:** Foundation & Network Device Skills
@@ -17,4 +17,4 @@
 - None
 
 ## Next Action
-Execute T01 of S03 (Build vulnerability-assessment skill with CVE mapping and CVSS scoring).
+Execute T01 of S04 (Build VPN/IPSec troubleshooting skill with IKE state machine diagnosis).
