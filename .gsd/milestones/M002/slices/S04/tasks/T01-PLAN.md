@@ -66,6 +66,12 @@ The skill covers IPSec/IKE troubleshooting ONLY — NOT SSL/TLS VPN (R027 explic
 - `grep -c 'IKE\|IKEv2\|SA\|phase' skills/vpn-ipsec-troubleshooting/SKILL.md` → ≥10
 - `grep -ci 'ssl.vpn\|ssl vpn\|tls vpn' skills/vpn-ipsec-troubleshooting/SKILL.md` → 0
 
+## Observability Impact
+
+- **New inspection surface:** `bash scripts/validate.sh` will report 23 skills (was 22). The VPN/IPSec skill contributes 3 check lines (safety tier, 7 sections, references/).
+- **How a future agent inspects this task:** Run `bash scripts/validate.sh 2>&1 | grep vpn-ipsec` to see pass/fail for this specific skill. Run the word-count awk command to verify body budget. Run `grep -ci 'ssl.vpn\|ssl vpn\|tls vpn'` to confirm IPSec-only scope.
+- **Failure state visibility:** If IKE state machine content is missing or incomplete, `grep -c 'IKE\|IKEv2\|SA\|phase'` returns <10, signaling sparse protocol coverage. If word count exceeds 2700, the Troubleshooting section needs compression (proven technique from S01).
+
 ## Inputs
 
 - `skills/bgp-analysis/SKILL.md` — FSM procedure shape precedent (6-step protocol state machine diagnosis flow)

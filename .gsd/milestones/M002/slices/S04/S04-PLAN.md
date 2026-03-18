@@ -35,6 +35,16 @@
 - `grep -c '802.1X\|WPA3\|rogue\|SSID' skills/wireless-security-audit/SKILL.md` → ≥5
 - `grep -c 'vpn-ipsec\|zero-trust\|wireless-security' README.md` → 3
 
+## Observability / Diagnostics
+
+- **Validation signal:** `bash scripts/validate.sh` — checks frontmatter safety tier, 7 required H2 sections, and references/ directory for every skill. Reports per-skill pass/fail with total count and error summary.
+- **Word-count inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/<name>/SKILL.md | wc -w` — must return ≤2700 for each new skill.
+- **Scope guard:** `grep -ci 'ssl.vpn\|ssl vpn\|tls vpn' skills/vpn-ipsec-troubleshooting/SKILL.md` — must return 0 to confirm IPSec-only scope.
+- **Content density:** `grep -c 'IKE\|IKEv2\|SA\|phase' skills/vpn-ipsec-troubleshooting/SKILL.md` (≥10), `grep -c 'maturity\|pillar\|score\|Level' skills/zero-trust-assessment/SKILL.md` (≥10), `grep -c '802.1X\|WPA3\|rogue\|SSID' skills/wireless-security-audit/SKILL.md` (≥5).
+- **Reference file count:** `ls skills/<name>/references/ | wc -l` — must be 2 per skill.
+- **Failure visibility:** validate.sh exits non-zero and prints `FAIL (N errors)` with per-skill ERROR lines to stderr identifying missing sections, bad frontmatter, or absent references/.
+- **Redaction:** No secrets or credentials — all skills are documentation-only with example CLI commands.
+
 ## Integration Closure
 
 - Upstream surfaces consumed: S01 proven security audit skill pattern, S02 compliance scoring pattern (Threshold Tables for maturity), M001 BGP FSM procedure shape (for VPN/IPSec state machine)
@@ -43,7 +53,7 @@
 
 ## Tasks
 
-- [ ] **T01: Build VPN/IPSec troubleshooting skill with IKE state machine diagnosis** `est:45m`
+- [x] **T01: Build VPN/IPSec troubleshooting skill with IKE state machine diagnosis** `est:45m`
   - Why: Delivers R027. Reuses the FSM procedure shape from bgp-analysis — IKE negotiation is a state machine like BGP's, with IKEv1 Main/Aggressive Mode and IKEv2 SA_INIT/SA_AUTH exchanges.
   - Files: `skills/vpn-ipsec-troubleshooting/SKILL.md`, `skills/vpn-ipsec-troubleshooting/references/state-machine.md`, `skills/vpn-ipsec-troubleshooting/references/cli-reference.md`
   - Do: Create SKILL.md with IKEv1/IKEv2 negotiation diagnosis procedure following BGP FSM shape (check SA state → diagnose stuck state → verify crypto params → validate phase 2 → assess tunnel health → report). Include [Cisco]/[JunOS]/[PAN-OS]/[FortiGate] vendor labels. Create state-machine.md with IKEv1 Main Mode (6-message), Aggressive Mode (3-message), IKEv2 SA_INIT/SA_AUTH, and Quick Mode (phase 2) FSMs. Create cli-reference.md with 4-vendor VPN commands organized by diagnosis phase. Body must be ≤2700 words, safety: read-only. Scoped to IPSec/IKE only — NOT SSL/TLS VPN.
