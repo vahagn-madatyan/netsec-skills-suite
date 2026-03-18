@@ -4,17 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R023 — NIST CSF and 800-53 control mapping — maps network/security posture to NIST framework categories
-- Class: compliance/security
-- Status: active
-- Description: NIST CSF and 800-53 control mapping — maps network/security posture to NIST framework categories
-- Why it matters: Required for government and many enterprise compliance programs
-- Source: user
-- Primary owning slice: M002/S02
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
 ### R024 — CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization, patch guidance
 - Class: core-capability
 - Status: active
@@ -424,6 +413,17 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: skills/cis-benchmark-audit/SKILL.md passes validate.sh (0 errors), body 2237 words ≤2700, 4-platform coverage (Cisco IOS, PAN-OS, JunOS, Check Point), Management/Control/Data Plane compliance assessment, control-reference.md cites 69 CIS control IDs with 0 reproduced benchmark text (Remediation:/Rationale: grep returns 0). D026 copyright risk retired.
 - Notes: CIS covers Cisco, Palo Alto, Juniper, Check Point
 
+### R023 — NIST CSF and 800-53 control mapping — maps network/security posture to NIST framework categories
+- Class: compliance/security
+- Status: validated
+- Description: NIST CSF and 800-53 control mapping — maps network/security posture to NIST framework categories
+- Why it matters: Required for government and many enterprise compliance programs
+- Source: user
+- Primary owning slice: M002/S02
+- Supporting slices: none
+- Validation: skills/nist-compliance-assessment/SKILL.md passes validate.sh (0 errors), body 2664 words ≤2700, 6 NIST 800-53 Rev 5 control families (AC/AU/CM/IA/SC/SI) mapped to CSF Protect/Detect functions, ~37 controls with L/M/H baseline applicability columns, 4-vendor inline labels (45 instances). references/ includes control-reference.md + cli-reference.md.
+- Notes: none
+
 ## Deferred
 
 ### R039 — Lightweight MCP server wrappers that connect skills to specific tool backends
@@ -509,7 +509,7 @@ This file is the explicit capability and coverage contract for the project.
 | R020 | core-capability | validated | M002/S01 | none | skills/cisco-firewall-audit/SKILL.md passes validate.sh, encodes dual-platform ASA security-levels/ACL/MPF + FTD ACP/Snort evaluation chain using [ASA]/[FTD] labels. 2694 body words. references/policy-model.md + cli-reference.md present. |
 | R021 | core-capability | validated | M002/S02 | none | skills/acl-rule-analysis/SKILL.md passes validate.sh (0 errors), body 2458 words ≤2700, 6-vendor inline labels ([Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate]/[CheckPoint]) with shadowed rule detection, overly permissive rule flagging, unused rule discovery, redundant rule identification, rule ordering optimization. references/ includes cli-reference.md + rule-patterns.md. |
 | R022 | compliance/security | validated | M002/S02 | none | skills/cis-benchmark-audit/SKILL.md passes validate.sh (0 errors), body 2237 words ≤2700, 4-platform coverage (Cisco IOS, PAN-OS, JunOS, Check Point), Management/Control/Data Plane compliance assessment, control-reference.md cites 69 CIS control IDs with 0 reproduced benchmark text (Remediation:/Rationale: grep returns 0). D026 copyright risk retired. |
-| R023 | compliance/security | active | M002/S02 | none | unmapped |
+| R023 | compliance/security | validated | M002/S02 | none | skills/nist-compliance-assessment/SKILL.md passes validate.sh (0 errors), body 2664 words ≤2700, 6 NIST 800-53 Rev 5 control families (AC/AU/CM/IA/SC/SI) mapped to CSF Protect/Detect functions, ~37 controls with L/M/H baseline applicability columns, 4-vendor inline labels (45 instances). references/ includes control-reference.md + cli-reference.md. |
 | R024 | core-capability | active | M002/S03 | none | unmapped |
 | R025 | core-capability | active | M002/S03 | none | unmapped |
 | R026 | core-capability | active | M002/S03 | none | unmapped |
@@ -533,7 +533,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 16
-- Mapped to slices: 16
-- Validated: 22 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020, R021, R022)
+- Active requirements: 15
+- Mapped to slices: 15
+- Validated: 23 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020, R021, R022, R023)
 - Unmapped active requirements: 0
