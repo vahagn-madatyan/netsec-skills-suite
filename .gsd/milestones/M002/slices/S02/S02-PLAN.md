@@ -58,6 +58,9 @@ bash scripts/validate.sh 2>&1 | grep -E '(OK|ERROR):' | head -5  # confirm struc
 
 # 3. Verify validate.sh exits non-zero on failure (regression guard)
 bash scripts/validate.sh 2>&1 > /dev/null; echo "exit: $?"  # must be 0 for passing suite
+
+# 4. Diagnostic: isolate per-skill failures for targeted debugging
+bash scripts/validate.sh 2>&1 | grep 'ERROR:' | awk -F: '{print $2}' | sort -u  # list failing skill names (empty = all pass)
 ```
 
 ## Observability / Diagnostics
@@ -86,7 +89,7 @@ bash scripts/validate.sh 2>&1 > /dev/null; echo "exit: $?"  # must be 0 for pass
   - Verify: `bash scripts/validate.sh` (18 skills, 0 errors), body ≤2700 words, 2 reference files, `grep -c '\.[0-9]' skills/cis-benchmark-audit/references/control-reference.md` shows many control IDs, manual scan confirms no reproduced CIS benchmark text
   - Done when: validate.sh reports 18 skills with 0 errors, body ≤2700 words, control-reference.md contains CIS control IDs without reproducing benchmark text, "CIS" appears in SKILL.md
 
-- [ ] **T03: Build NIST compliance assessment skill with 800-53 control family mapping** `est:30m`
+- [x] **T03: Build NIST compliance assessment skill with 800-53 control family mapping** `est:30m`
   - Why: Delivers R023. Builds on compliance assessment procedure shape proven in T02. NIST SP 800-53 and CSF are public-domain US government publications — no copyright constraint. Maps 6 control families (AC, AU, CM, IA, SC, SI) to concrete network device audit checks.
   - Files: `skills/nist-compliance-assessment/SKILL.md`, `skills/nist-compliance-assessment/references/control-reference.md`, `skills/nist-compliance-assessment/references/cli-reference.md`
   - Do: Create SKILL.md with frontmatter (`name: nist-compliance-assessment`, `metadata.safety: read-only`), 7 required H2 sections. Procedure (compliance assessment shape): scope assessment and framework selection (CSF vs 800-53) → Access Control (AC) assessment → Audit and Accountability (AU) → Configuration Management (CM) → Identification and Authentication (IA) → System and Communications Protection (SC) → System and Information Integrity (SI). Focus on CSF Protect (PR) and Detect (DE) functions. Vendor-agnostic with `[Cisco]`/`[JunOS]`/`[EOS]`/`[PAN-OS]` inline labels. Threshold Tables: "Control Gap Severity" by 800-53 impact level. Explicitly state scope is limited to 6 of 20 800-53 families (the ones with direct network device relevance). References: `control-reference.md` — NIST 800-53 control families mapped to network device audit checks with CSF function mapping. `cli-reference.md` — CLI commands organized by NIST control family per vendor. Body ≤2700 words.

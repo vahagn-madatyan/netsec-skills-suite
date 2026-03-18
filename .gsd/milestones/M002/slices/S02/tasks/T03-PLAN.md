@@ -84,6 +84,14 @@ Three files are created: SKILL.md + `references/control-reference.md` + `referen
 - `grep -l 'NIST\|800-53\|CSF' skills/nist-compliance-assessment/SKILL.md` returns the file path
 - `grep -l 'AC-2\|SC-7' skills/nist-compliance-assessment/references/control-reference.md` confirms specific control IDs
 
+## Observability Impact
+
+- **Validation surface expanded:** `bash scripts/validate.sh` gains 1 new skill (nist-compliance-assessment), increasing total from 18 to 19 skills. Any structural issue surfaces as an `ERROR:` line with skill name and check identifier.
+- **Word budget inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/nist-compliance-assessment/SKILL.md | wc -w` — body word count must be ≤2700. Exceeding this is a hard fail.
+- **Content depth check:** `grep -l 'NIST\|800-53\|CSF' skills/nist-compliance-assessment/SKILL.md` — confirms NIST content is present. `grep -l 'AC-2\|SC-7\|AU-2' skills/nist-compliance-assessment/SKILL.md` — confirms specific control IDs are referenced.
+- **Reference file count:** `ls skills/nist-compliance-assessment/references/ | wc -l` — must be exactly 2 (control-reference.md and cli-reference.md).
+- **Failure state:** If validate.sh reports errors after this task, `bash scripts/validate.sh 2>&1 | grep 'ERROR:' | grep 'nist-compliance-assessment'` isolates failures to this skill specifically. Structured output is parseable for agent consumption.
+
 ## Inputs
 
 - `skills/palo-alto-firewall-audit/SKILL.md` — reference for SKILL.md structure, frontmatter format, 7 H2 sections
