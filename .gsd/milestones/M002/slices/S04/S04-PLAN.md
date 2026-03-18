@@ -60,7 +60,7 @@
   - Verify: `bash scripts/validate.sh 2>&1 | grep -E 'Skills checked|Result'` → 23 skills, PASS. Word count ≤2700. `grep -c 'IKE\|IKEv2\|SA\|phase' skills/vpn-ipsec-troubleshooting/SKILL.md` → ≥10.
   - Done when: validate.sh passes 23 skills, body ≤2700 words, 2 reference files present, IKE-specific content confirmed
 
-- [ ] **T02: Build zero-trust assessment skill with maturity scoring rubric** `est:45m`
+- [x] **T02: Build zero-trust assessment skill with maturity scoring rubric** `est:45m`
   - Why: Delivers R028. Introduces the "maturity scoring" procedure shape (D028) — a rubric-based posture assessment where Threshold Tables map to maturity level scoring across 5 ZT pillars.
   - Files: `skills/zero-trust-assessment/SKILL.md`, `skills/zero-trust-assessment/references/maturity-model.md`, `skills/zero-trust-assessment/references/cli-reference.md`
   - Do: Create SKILL.md with 5-pillar ZT assessment (identity, device, network, application, data) × 5 maturity levels (L1 Traditional → L5 Optimal). Vendor-agnostic — no inline vendor labels. Threshold Tables section maps maturity scores to pillar levels. Reference NIST SP 800-207 ZTA model (public domain). Create maturity-model.md with pillar definitions, scoring criteria, and assessment methodology. Create cli-reference.md with ZT control validation commands across [Cisco]/[JunOS]/[PAN-OS]/[FortiGate]. Body must be ≤2700 words, safety: read-only.

@@ -70,6 +70,15 @@ The cli-reference.md file IS multi-vendor ([Cisco]/[JunOS]/[PAN-OS]/[FortiGate])
 - `grep -c 'maturity\|pillar\|score\|Level' skills/zero-trust-assessment/SKILL.md` → ≥10
 - `grep -c 'NIST\|800-207' skills/zero-trust-assessment/SKILL.md` → ≥1
 
+## Observability Impact
+
+- **Validation signal:** `bash scripts/validate.sh 2>&1 | grep zero-trust` — per-skill pass/fail line showing frontmatter safety tier, 7 required H2 sections, and references/ directory.
+- **Word-count inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/zero-trust-assessment/SKILL.md | wc -w` — must return ≤2700.
+- **Content density:** `grep -c 'maturity\|pillar\|score\|Level' skills/zero-trust-assessment/SKILL.md` — should be ≥10 to confirm substantive ZT maturity content.
+- **Vendor-agnostic guard:** `grep -ci '\[Cisco\]\|\[JunOS\]\|\[PAN-OS\]\|\[FortiGate\]' skills/zero-trust-assessment/SKILL.md` — must be 0 (vendor labels only in references/).
+- **Reference file count:** `ls skills/zero-trust-assessment/references/ | wc -l` — must be 2.
+- **Failure visibility:** validate.sh exits non-zero and prints `FAIL (N errors)` with per-skill ERROR lines if sections/frontmatter/references are missing.
+
 ## Inputs
 
 - `skills/cis-benchmark-audit/SKILL.md` — Threshold Tables scoring pattern precedent (severity tiers as scoring rubric)
