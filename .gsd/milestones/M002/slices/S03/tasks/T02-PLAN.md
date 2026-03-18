@@ -83,3 +83,21 @@ Critical constraint: this must NOT become a generic "how to use Splunk" tutorial
 - `skills/siem-log-analysis/references/query-reference.md` — Side-by-side SPL/KQL/AQL patterns for 7 network security use cases
 - `bash scripts/validate.sh` reporting 21 skills, 0 errors
 - M002 key risk #3 (SIEM vendor fragmentation) retired
+
+## Observability Impact
+
+**New signals:**
+- `bash scripts/validate.sh` — skill count increments from 20 to 21; siem-log-analysis appears in per-skill OK/ERROR lines
+- `grep -c '\[Splunk\]\|\[ELK\]\|\[QRadar\]' skills/siem-log-analysis/SKILL.md` — SIEM vendor label density (≥10 required); this is the key metric for SIEM vendor fragmentation risk retirement
+- `awk` K001 word count on SKILL.md body — numeric signal for content scope control (≤2700)
+- `ls skills/siem-log-analysis/references/` — structural completeness of reference files (exactly 2)
+
+**Inspection surfaces:**
+- `grep '^## ' skills/siem-log-analysis/SKILL.md` — H2 section headers confirm structural completeness
+- `wc -l skills/siem-log-analysis/references/*.md` — non-trivial reference content (each file >20 lines)
+- `grep 'safety' skills/siem-log-analysis/SKILL.md` — confirms read-only safety tier in frontmatter
+
+**Failure visibility:**
+- validate.sh prints `ERROR: siem-log-analysis` with specific failure reason if any structural check fails
+- Word count >2700 is a numeric fail — no ambiguous pass/fail boundary
+- SIEM label count <10 from `grep -c` is a numeric fail with clear remediation (add more platform-specific query examples)
