@@ -58,6 +58,11 @@ bash scripts/validate.sh; echo "EXIT_CODE=$?"  # expect EXIT_CODE=0
 
 # 10. Per-skill error inspection surface
 bash scripts/validate.sh 2>&1 | grep -E '^\s*(OK|ERROR):' | head -30  # shows per-check pass/fail lines
+
+# 11. Failure-path: per-skill structured error output is actionable
+bash scripts/validate.sh 2>&1 | grep -E 'ERROR:|WARNING:' | wc -l  # expect 0; non-zero means specific skill has structural issue
+# Inspect individual skill errors:
+bash scripts/validate.sh 2>&1 | grep -A1 'incident-response-network'  # shows this skill's pass/fail line with reason
 ```
 
 ## Observability / Diagnostics
@@ -97,7 +102,7 @@ bash scripts/validate.sh 2>&1 | grep -E '^\s*(OK|ERROR):' | head -30  # shows pe
   - Verify: `bash scripts/validate.sh` passes this skill + all prior 20 skills. Body ≤2700 words. `grep -c '\[Splunk\]\|\[ELK\]\|\[QRadar\]'` ≥10 in SKILL.md.
   - Done when: `bash scripts/validate.sh` shows 21 skills with 0 errors, body ≤2700 words, 2 reference files, ≥10 SIEM vendor labels
 
-- [ ] **T03: Build incident-response-network skill for network forensics** `est:35m`
+- [x] **T03: Build incident-response-network skill for network forensics** `est:35m`
   - Why: Delivers R026 — network forensics evidence collection and analysis during security incidents. Scope is deliberately narrow: network evidence only (packet captures, flow data, ARP/MAC/CAM tables, routing snapshots, syslog). NOT general IR, endpoint forensics, or malware analysis.
   - Files: `skills/incident-response-network/SKILL.md`, `skills/incident-response-network/references/cli-reference.md`, `skills/incident-response-network/references/forensics-workflow.md`
   - Do: Create SKILL.md with frontmatter (`metadata.safety: read-only`), all 7 H2 sections. Procedure follows event-driven lifecycle shape: evidence preservation → initial triage → lateral movement detection → containment verification (read-only — confirm ACLs/routing changes, not execute them) → timeline reconstruction → post-incident documentation. Use `[Cisco]`/`[JunOS]`/`[EOS]` vendor labels for forensic data collection commands. Threshold Tables: evidence priority classification. Reference 1 (cli-reference.md): packet capture, flow export, log collection commands per vendor. Reference 2 (forensics-workflow.md): evidence collection methodology, chain-of-custody documentation patterns, network artifact types, timeline reconstruction approach. Body ≤2700 words.

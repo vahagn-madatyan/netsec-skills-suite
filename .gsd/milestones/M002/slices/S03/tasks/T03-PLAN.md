@@ -73,6 +73,24 @@ Containment verification steps are read-only (confirm ACLs applied, verify routi
 - `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/incident-response-network/SKILL.md` returns ≥5
 - All 21 prior skills still pass validation (0 errors total)
 
+## Observability Impact
+
+**Signals changed:**
+- `bash scripts/validate.sh` skill count increments from 21 → 22
+- `ls skills/` directory listing gains `incident-response-network/`
+- `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]' skills/incident-response-network/SKILL.md` becomes available as a vendor-label density signal
+
+**Inspection surfaces:**
+- `skills/incident-response-network/references/` — `ls` shows 2 files; `wc -l` confirms non-trivial content
+- `grep '^## ' skills/incident-response-network/SKILL.md` — 7 H2 sections confirm structural completeness
+- `grep 'safety' skills/incident-response-network/SKILL.md` — confirms read-only safety tier
+- `awk` body word count — numeric signal for content density (target ≤2700)
+
+**Failure visibility:**
+- `validate.sh` prints `ERROR: incident-response-network — <reason>` if any structural check fails
+- Body word count >2700 is a numeric threshold — no ambiguous pass/fail
+- Missing reference files produce `ERROR:` with explicit missing-file message
+
 ## Inputs
 
 - T01 + T02 completed: vulnerability-assessment and siem-log-analysis skills validated (21 skills total)
