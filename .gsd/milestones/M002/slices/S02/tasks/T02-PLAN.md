@@ -101,6 +101,14 @@ Three files are created: SKILL.md + `references/control-reference.md` + `referen
 - D028 decision — "compliance assessment" procedure shape: map device config to framework controls
 - K001 in KNOWLEDGE.md — use `awk` (not `sed`) for body word count on macOS
 
+## Observability Impact
+
+- **New validation surface:** `bash scripts/validate.sh` skill count increases from 17 to 18. The new `cis-benchmark-audit` skill is checked for all 7 H2 sections, frontmatter fields, and reference file count.
+- **Copyright safety inspection:** `grep -c 'Remediation:\|Rationale:' skills/cis-benchmark-audit/references/control-reference.md` must return 0 — confirms no reproduced CIS benchmark text. `grep -c '\.[0-9]' skills/cis-benchmark-audit/references/control-reference.md` must return >20 — confirms CIS control IDs are present.
+- **Word budget signal:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/cis-benchmark-audit/SKILL.md | wc -w` — body word count. Must be ≤2700.
+- **Future agent inspection:** To verify this task's output, run `bash scripts/validate.sh 2>&1 | grep cis-benchmark-audit` to see per-check status. `ls skills/cis-benchmark-audit/references/` confirms 2 reference files exist.
+- **Failure state:** If SKILL.md is missing a required H2 section, validate.sh emits `ERROR: cis-benchmark-audit — missing section: <name>`. If body exceeds 2700 words, it's detectable via the awk word count command above.
+
 ## Expected Output
 
 - `skills/cis-benchmark-audit/SKILL.md` — CIS benchmark compliance assessment skill with Management/Control/Data Plane audit procedure

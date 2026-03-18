@@ -82,6 +82,14 @@ Three files are created: SKILL.md + `references/cli-reference.md` + `references/
 - `skills/palo-alto-firewall-audit/references/cli-reference.md` — reference for CLI reference table format (`| Function | CLI Command |` with section headers)
 - K001 in KNOWLEDGE.md — use `awk` (not `sed`) for body word count on macOS
 
+## Observability Impact
+
+- **New skill in validate.sh:** After T01, `bash scripts/validate.sh` reports 17 skills (was 16). A future agent inspects this task by running validate.sh and confirming `acl-rule-analysis` appears with all OK checks.
+- **Word count signal:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/acl-rule-analysis/SKILL.md | wc -w` — body word count must stay ≤2700. If a future edit pushes it over, this is the diagnostic command.
+- **Content depth:** `grep -c 'shadowed\|permissive\|unused\|redundant' skills/acl-rule-analysis/SKILL.md` — confirms all 4 rule analysis categories are present. A count of 0 for any keyword indicates missing coverage.
+- **Multi-vendor label coverage:** `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]\|\[PAN-OS\]\|\[FortiGate\]\|\[CheckPoint\]' skills/acl-rule-analysis/SKILL.md` — confirms inline vendor labels are present.
+- **Failure state:** If validate.sh shows `ERROR:` lines for `acl-rule-analysis`, the specific check (metadata.safety, missing H2 section, or missing references/) is named in the error message.
+
 ## Expected Output
 
 - `skills/acl-rule-analysis/SKILL.md` — vendor-agnostic ACL/rule analysis skill with shadowed, permissive, unused, redundant rule detection + ordering optimization

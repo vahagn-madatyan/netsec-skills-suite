@@ -44,18 +44,42 @@ grep -l 'NIST\|800-53\|CSF' skills/nist-compliance-assessment/SKILL.md  # NIST m
 
 # No regression — 0 errors total
 bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'  # must be 0
+
+# Failure-path / diagnostic checks
+# 1. Verify validate.sh detects a broken skill (missing required section)
+mkdir -p /tmp/nss-diag-test/skills/broken-test-skill/references
+echo -e "---\nname: broken-test-skill\ncategory: test\ndifficulty: beginner\nestimated_time: 5 minutes\nmetadata:\n  safety: read-only\n---\n# Only one section\nNo real content." > /tmp/nss-diag-test/skills/broken-test-skill/SKILL.md
+# Running validate.sh against a skill missing 6 of 7 required H2 sections must produce ERROR lines
+bash scripts/validate.sh /tmp/nss-diag-test/skills/broken-test-skill 2>&1 | grep -c 'ERROR:'  # must be >0 (confirms failure detection works)
+rm -rf /tmp/nss-diag-test
+
+# 2. Verify structured error output is parseable — each ERROR line includes skill name and check
+bash scripts/validate.sh 2>&1 | grep -E '(OK|ERROR):' | head -5  # confirm structured per-check output
+
+# 3. Verify validate.sh exits non-zero on failure (regression guard)
+bash scripts/validate.sh 2>&1 > /dev/null; echo "exit: $?"  # must be 0 for passing suite
 ```
+
+## Observability / Diagnostics
+
+- **Validation surface:** `bash scripts/validate.sh` — single command reports skill count, per-skill section/frontmatter/reference checks, and total error count. Output is structured (OK/ERROR per check) for agent parsing.
+- **Word budget inspection:** `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/<name>/SKILL.md | wc -w` — per-skill body word count. Exceeding 2700 is a hard fail.
+- **Reference file count:** `ls skills/<name>/references/ | wc -l` — must be exactly 2 per skill. Missing or extra files indicate incomplete or over-scoped delivery.
+- **Content depth grep:** `grep -l '<keyword>' skills/<name>/SKILL.md` — quick check that key concepts (shadowed, CIS, NIST) are present in the right skills.
+- **Failure visibility:** validate.sh prints `ERROR:` lines to stderr for each failing check with the skill name and specific check that failed. `grep -c 'ERROR:' <(bash scripts/validate.sh 2>&1)` gives a scalar failure count.
+- **Regression detection:** validate.sh checks ALL skills (not just new ones), so any regression in existing M001 skills surfaces immediately as an error count increase.
+- **Failure-path verification:** To confirm validate.sh correctly detects broken skills, create a minimal broken skill (`mkdir -p /tmp/nss-diag-test/skills/broken-test-skill/references && echo '---\nname: broken-test-skill\n---\n# Only intro' > /tmp/nss-diag-test/skills/broken-test-skill/SKILL.md`) and run `bash scripts/validate.sh /tmp/nss-diag-test/skills/broken-test-skill 2>&1 | grep -c 'ERROR:'` — must return >0. Structured output is parseable via `grep -E '(OK|ERROR):' | head -5`. Exit code is 0 only for passing suites (`bash scripts/validate.sh 2>&1 > /dev/null; echo "exit: $?"`).
 
 ## Tasks
 
-- [ ] **T01: Build vendor-agnostic ACL rule analysis skill with multi-vendor inline labels** `est:30m`
+- [x] **T01: Build vendor-agnostic ACL rule analysis skill with multi-vendor inline labels** `est:30m`
   - Why: Delivers R021. Extends S01's "policy audit" procedure shape to vendor-agnostic rule pattern analysis (shadowed rules, overly permissive rules, unused rules, rule ordering). Proves multi-vendor inline labeling works for security audit skills with 6 vendor labels.
   - Files: `skills/acl-rule-analysis/SKILL.md`, `skills/acl-rule-analysis/references/cli-reference.md`, `skills/acl-rule-analysis/references/rule-patterns.md`
   - Do: Create SKILL.md with frontmatter (`name: acl-rule-analysis`, `metadata.safety: read-only`), 7 required H2 sections. Procedure: collect rulebase → identify shadowed rules → detect overly permissive rules → find unused rules → identify redundant/duplicate rules → rule ordering optimization → generate recommendations. Use `[Cisco]`/`[JunOS]`/`[EOS]`/`[PAN-OS]`/`[FortiGate]`/`[CheckPoint]` inline labels for vendor-specific CLI commands. Threshold Tables: "Rule Risk Severity" classification. References: `cli-reference.md` (multi-vendor ACL retrieval commands in table format), `rule-patterns.md` (rule analysis pattern definitions with detection algorithms). Body ≤2700 words.
   - Verify: `bash scripts/validate.sh` (17 skills, 0 errors), `awk 'BEGIN{c=0} /^---$/{c++; if(c==2){found=1; next}} found{print}' skills/acl-rule-analysis/SKILL.md | wc -w` ≤2700, `ls skills/acl-rule-analysis/references/ | wc -l` = 2
   - Done when: validate.sh reports 17 skills with 0 errors, body ≤2700 words, 2 reference files exist, skill contains "shadowed" and multi-vendor inline labels
 
-- [ ] **T02: Build CIS benchmark audit skill with copyright-safe control reference** `est:40m`
+- [x] **T02: Build CIS benchmark audit skill with copyright-safe control reference** `est:40m`
   - Why: Delivers R022. Retires M002's #2 key risk (D026 — CIS copyright-safe reference strategy). Must prove that citing control IDs + categories without reproducing benchmark text produces actionable audit guidance. Introduces "compliance assessment" procedure shape (D028).
   - Files: `skills/cis-benchmark-audit/SKILL.md`, `skills/cis-benchmark-audit/references/control-reference.md`, `skills/cis-benchmark-audit/references/cli-reference.md`
   - Do: Create SKILL.md with frontmatter (`name: cis-benchmark-audit`, `metadata.safety: read-only`), 7 required H2 sections. Procedure (compliance assessment shape): platform identification → Management Plane audit (SSH, AAA, NTP, logging, SNMP, banner) → Control Plane audit (routing protocol auth, CoPP, ICMP) → Data Plane audit (ACLs, uRPF, storm control, port security, encryption) → compliance scoring → priority remediation plan. Cover Cisco IOS, PAN-OS, JunOS, Check Point per-vendor sections. Threshold Tables: "Compliance Violation Severity" scored by CIS control level. References: `control-reference.md` — **COPYRIGHT-SAFE**: table mapping CIS section IDs to categories and config areas to check, WITHOUT reproducing benchmark text/remediation/rationale. Target ~30-40 high-impact controls. `cli-reference.md` — read-only audit commands by CIS category per platform. Body ≤2700 words.
