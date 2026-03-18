@@ -46,6 +46,9 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [acl-rule-analysis](skills/acl-rule-analysis/SKILL.md) | Vendor-agnostic ACL/firewall rule analysis — shadowed rule detection, overly permissive rule flagging, unused rule cleanup, rule ordering optimization | `read-only` |
 | [cis-benchmark-audit](skills/cis-benchmark-audit/SKILL.md) | CIS benchmark compliance assessment — Management/Control/Data Plane audit for Cisco IOS, PAN-OS, JunOS, Check Point with copyright-safe control references | `read-only` |
 | [nist-compliance-assessment](skills/nist-compliance-assessment/SKILL.md) | NIST CSF and 800-53 compliance mapping — AC, AU, CM, IA, SC, SI control family assessment for network device security posture | `read-only` |
+| [vulnerability-assessment](skills/vulnerability-assessment/SKILL.md) | CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization across Cisco, JunOS, EOS, PAN-OS, FortiGate | `read-only` |
+| [siem-log-analysis](skills/siem-log-analysis/SKILL.md) | Network security SIEM analysis — syslog parsing, event correlation, alert triage with Splunk SPL, ELK KQL, and QRadar AQL query patterns | `read-only` |
+| [incident-response-network](skills/incident-response-network/SKILL.md) | Network forensics during incident response — packet capture, flow analysis, lateral movement detection, evidence preservation (Cisco/JunOS/EOS) | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

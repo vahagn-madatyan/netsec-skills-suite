@@ -109,7 +109,7 @@ bash scripts/validate.sh 2>&1 | grep -A1 'incident-response-network'  # shows th
   - Verify: `bash scripts/validate.sh` passes this skill + all prior 21 skills. Body ≤2700 words. `grep -ci 'lateral movement\|packet capture\|netflow\|evidence'` ≥5.
   - Done when: `bash scripts/validate.sh` shows 22 skills with 0 errors, body ≤2700 words, 2 reference files, network-forensics-specific content confirmed
 
-- [ ] **T04: Update README catalog and run full-suite validation** `est:15m`
+- [x] **T04: Update README catalog and run full-suite validation** `est:15m`
   - Why: Completes the slice by adding 3 new skills to the README catalog and running the full verification battery to confirm 22 skills pass with 0 errors and no regression on M001/S01/S02 skills.
   - Files: `README.md`
   - Do: Add 3 new catalog rows after line 48 (current last security skill row — nist-compliance-assessment) in the README catalog table. Rows: vulnerability-assessment (CVE description), siem-log-analysis (SIEM description), incident-response-network (IR description). All with `read-only` safety tier. Run full verification battery from the slice Verification section. Confirm no M001 regression.

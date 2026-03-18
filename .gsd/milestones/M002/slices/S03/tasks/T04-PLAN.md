@@ -55,6 +55,14 @@ Complete S03 by adding the 3 new security operations skills to the README catalo
 - `grep -ci 'lateral movement\|packet capture\|netflow\|evidence' skills/incident-response-network/SKILL.md` returns ≥5
 - `bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'` returns 0
 
+## Observability Impact
+
+**What changes:** README.md gains 3 new catalog rows, making the catalog the single source of truth for all 22 skills. No runtime behavior changes — this is a documentation-only update.
+
+**How to inspect:** `grep -c 'vulnerability-assessment\|siem-log-analysis\|incident-response-network' README.md` returns 3 (confirms all rows present). `bash scripts/validate.sh` remains the primary health check — 22 skills, 0 errors.
+
+**Failure state:** If a README row has a broken link or wrong safety tier, `validate.sh` will NOT catch it (it only checks SKILL.md files, not README). Manual `grep` for the skill names in README.md is the inspection surface for catalog completeness. A missing row means the skill exists on disk but is invisible to users browsing the README.
+
 ## Inputs
 
 - T01, T02, T03 completed: all 3 skills are created and individually validated (22 skills total)
