@@ -45,11 +45,36 @@ grep -c 'vulnerability-assessment\|siem-log-analysis\|incident-response-network'
 
 # 7. No regression
 bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'  # expect 0
+
+# 8. Failure-path: validate.sh correctly detects structural errors
+# (Spot-check: confirm error output is structured and actionable)
+bash scripts/validate.sh 2>&1 | grep -E 'ERROR:|PASS|FAIL|Skills checked:'  # expect summary lines present with 0 errors
 ```
+
+## Observability / Diagnostics
+
+**Runtime signals:**
+- `bash scripts/validate.sh` — primary health signal; reports skill count, error count, and per-skill pass/fail with specific error messages for frontmatter, sections, and references
+- Word count via K001 `awk` method — enforces ≤2700 body words per skill; exceeding triggers trim-and-revalidate cycle
+- `grep -c` content specificity checks — verify domain-relevant terms (CVE/CVSS/NVD, Splunk/ELK/QRadar, lateral movement/packet capture) appear at expected density
+
+**Inspection surfaces:**
+- Each skill's `references/` directory — 2 files per skill; `ls` confirms presence, `wc -l` confirms non-trivial content
+- YAML frontmatter — `metadata.safety` value visible via `grep 'safety' skills/*/SKILL.md`
+- H2 section headers — `grep '^## ' skills/*/SKILL.md` shows structural completeness at a glance
+
+**Failure visibility:**
+- Validation script prints per-skill `ERROR:` lines with specific failure reason (missing section name, invalid safety value, missing references/)
+- Non-zero exit code from `validate.sh` halts slice verification
+- Word count exceeding 2700 is a numeric signal — no ambiguous pass/fail
+
+**Redaction constraints:**
+- All skills are `read-only` safety tier — no credentials, tokens, or secrets in any skill content
+- NVD/CVE data is public domain; SIEM query patterns are generic examples; no vendor-proprietary content
 
 ## Tasks
 
-- [ ] **T01: Build vulnerability-assessment skill with CVE mapping and CVSS scoring** `est:35m`
+- [x] **T01: Build vulnerability-assessment skill with CVE mapping and CVSS scoring** `est:35m`
   - Why: Delivers R024 — the most structured S03 skill using the proven threshold-comparison pattern (CVSS scores → severity tiers → remediation SLAs). No novel elements; proves the slice quickly.
   - Files: `skills/vulnerability-assessment/SKILL.md`, `skills/vulnerability-assessment/references/cli-reference.md`, `skills/vulnerability-assessment/references/vulnerability-reference.md`
   - Do: Create SKILL.md with frontmatter (`metadata.safety: read-only`), all 7 H2 sections. Procedure: identify device versions → query CVE data → score with CVSS v3.1 → classify by severity × exposure × exploitability → prioritize remediation. Use `[Cisco]`/`[JunOS]`/`[EOS]`/`[PAN-OS]`/`[FortiGate]` labels for vendor-specific version commands. Threshold Tables section maps CVSS ranges to severity tiers and remediation SLAs. Reference 1 (cli-reference.md): version/patch retrieval commands per vendor. Reference 2 (vulnerability-reference.md): CVSS v3.1 scoring breakdown, NVD query approach, severity-to-SLA mapping, vendor advisory sources (Cisco PSIRT, Palo Alto advisories, Juniper JSA, Fortinet PSIRT, Arista advisories). Body ≤2700 words.

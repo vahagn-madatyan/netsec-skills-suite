@@ -64,6 +64,25 @@ NVD/CVE data is public domain — no copyright concerns (unlike S02's CIS benchm
 - D027 — all M002 skills are read-only
 - D028 — this skill uses threshold-comparison procedure shape (CVSS scores as thresholds)
 
+## Observability Impact
+
+**Signals changed:**
+- `bash scripts/validate.sh` count increases from 19 → 20 skills checked
+- `ls skills/` gains `vulnerability-assessment/` directory
+- `grep -c 'CVE\|CVSS\|NVD'` on the new SKILL.md returns ≥5, confirming domain-specific content density
+
+**How to inspect this task:**
+- `bash scripts/validate.sh 2>&1 | grep vulnerability-assessment` — shows per-skill validation result
+- `awk` word count command from K001 — confirms body ≤2700 words
+- `ls skills/vulnerability-assessment/references/` — confirms exactly 2 reference files
+- `grep 'safety' skills/vulnerability-assessment/SKILL.md` — confirms read-only safety tier
+
+**Failure state visibility:**
+- Missing H2 section → validate.sh prints `ERROR: Missing required section: ## <name>` for the specific section
+- Missing `metadata.safety` → validate.sh prints `ERROR: metadata.safety is missing from frontmatter`
+- Word count >2700 → numeric `wc -w` output exceeds threshold, caught by verification step
+- Missing references/ → validate.sh prints `ERROR: references/ directory missing`
+
 ## Expected Output
 
 - `skills/vulnerability-assessment/SKILL.md` — Complete CVE assessment skill (~2200-2600 body words) with 5-vendor version mapping, CVSS scoring, remediation prioritization
