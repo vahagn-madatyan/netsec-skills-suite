@@ -43,6 +43,9 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [fortigate-firewall-audit](skills/fortigate-firewall-audit/SKILL.md) | FortiGate/FortiOS policy audit — VDOM segmentation analysis, UTM profile binding validation, SD-WAN security assessment | `read-only` |
 | [checkpoint-firewall-audit](skills/checkpoint-firewall-audit/SKILL.md) | Check Point R80+ security policy audit — rulebase layer analysis, blade activation audit, SmartConsole management validation | `read-only` |
 | [cisco-firewall-audit](skills/cisco-firewall-audit/SKILL.md) | Cisco ASA/FTD dual-platform audit — ASA ACL/security-level analysis, FTD Access Control Policy and Snort IPS assessment | `read-only` |
+| [acl-rule-analysis](skills/acl-rule-analysis/SKILL.md) | Vendor-agnostic ACL/firewall rule analysis — shadowed rule detection, overly permissive rule flagging, unused rule cleanup, rule ordering optimization | `read-only` |
+| [cis-benchmark-audit](skills/cis-benchmark-audit/SKILL.md) | CIS benchmark compliance assessment — Management/Control/Data Plane audit for Cisco IOS, PAN-OS, JunOS, Check Point with copyright-safe control references | `read-only` |
+| [nist-compliance-assessment](skills/nist-compliance-assessment/SKILL.md) | NIST CSF and 800-53 compliance mapping — AC, AU, CM, IA, SC, SI control family assessment for network device security posture | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 

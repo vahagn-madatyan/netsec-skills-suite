@@ -96,7 +96,7 @@ bash scripts/validate.sh 2>&1 | grep 'ERROR:' | awk -F: '{print $2}' | sort -u  
   - Verify: `bash scripts/validate.sh` (19 skills, 0 errors), body ≤2700 words, 2 reference files, `grep -l 'NIST\|800-53\|CSF' skills/nist-compliance-assessment/SKILL.md` succeeds
   - Done when: validate.sh reports 19 skills with 0 errors, body ≤2700 words, SKILL.md references NIST 800-53 and CSF with concrete network audit mappings
 
-- [ ] **T04: Update README catalog and run full slice verification** `est:15m`
+- [x] **T04: Update README catalog and run full slice verification** `est:15m`
   - Why: Integrates 3 new skills into the README catalog table and runs comprehensive slice-level verification confirming all 19 skills pass, no M001 regression, word budgets met, CIS copyright safety validated, and content depth checks pass.
   - Files: `README.md`
   - Do: Add 3 new rows to README catalog table after line 45 (after the 4 firewall audit rows, under existing "Security Skills" separator). Row format matches existing table: `| [skill-name](skills/skill-name/SKILL.md) | Description | \`read-only\` |`. Descriptions should cite specific capabilities (e.g., "shadowed rule detection" not "rule analysis"). Run all slice-level verification checks from the Verification section above.
