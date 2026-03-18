@@ -4,28 +4,6 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Active
 
-### R021 — Vendor-agnostic ACL/rule analysis — shadowed rules, overly permissive rules, rule ordering optimization, unused rule detection
-- Class: core-capability
-- Status: active
-- Description: Vendor-agnostic ACL/rule analysis — shadowed rules, overly permissive rules, rule ordering optimization, unused rule detection
-- Why it matters: Rule bloat is universal across all firewall vendors
-- Source: research
-- Primary owning slice: M002/S02
-- Supporting slices: none
-- Validation: unmapped
-- Notes: none
-
-### R022 — CIS benchmark assessment for network devices — maps device config against CIS controls, generates compliance report
-- Class: compliance/security
-- Status: active
-- Description: CIS benchmark assessment for network devices — maps device config against CIS controls, generates compliance report
-- Why it matters: CIS benchmarks are the industry standard for device hardening
-- Source: user
-- Primary owning slice: M002/S02
-- Supporting slices: none
-- Validation: unmapped
-- Notes: CIS covers Cisco, Palo Alto, Juniper, Check Point
-
 ### R023 — NIST CSF and 800-53 control mapping — maps network/security posture to NIST framework categories
 - Class: compliance/security
 - Status: active
@@ -424,6 +402,28 @@ This file is the explicit capability and coverage contract for the project.
 - Validation: skills/cisco-firewall-audit/SKILL.md passes validate.sh, encodes dual-platform ASA security-levels/ACL/MPF + FTD ACP/Snort evaluation chain using [ASA]/[FTD] labels. 2694 body words. references/policy-model.md + cli-reference.md present.
 - Notes: none
 
+### R021 — Vendor-agnostic ACL/rule analysis — shadowed rules, overly permissive rules, rule ordering optimization, unused rule detection
+- Class: core-capability
+- Status: validated
+- Description: Vendor-agnostic ACL/rule analysis — shadowed rules, overly permissive rules, rule ordering optimization, unused rule detection
+- Why it matters: Rule bloat is universal across all firewall vendors
+- Source: research
+- Primary owning slice: M002/S02
+- Supporting slices: none
+- Validation: skills/acl-rule-analysis/SKILL.md passes validate.sh (0 errors), body 2458 words ≤2700, 6-vendor inline labels ([Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate]/[CheckPoint]) with shadowed rule detection, overly permissive rule flagging, unused rule discovery, redundant rule identification, rule ordering optimization. references/ includes cli-reference.md + rule-patterns.md.
+- Notes: none
+
+### R022 — CIS benchmark assessment for network devices — maps device config against CIS controls, generates compliance report
+- Class: compliance/security
+- Status: validated
+- Description: CIS benchmark assessment for network devices — maps device config against CIS controls, generates compliance report
+- Why it matters: CIS benchmarks are the industry standard for device hardening
+- Source: user
+- Primary owning slice: M002/S02
+- Supporting slices: none
+- Validation: skills/cis-benchmark-audit/SKILL.md passes validate.sh (0 errors), body 2237 words ≤2700, 4-platform coverage (Cisco IOS, PAN-OS, JunOS, Check Point), Management/Control/Data Plane compliance assessment, control-reference.md cites 69 CIS control IDs with 0 reproduced benchmark text (Remediation:/Rationale: grep returns 0). D026 copyright risk retired.
+- Notes: CIS covers Cisco, Palo Alto, Juniper, Check Point
+
 ## Deferred
 
 ### R039 — Lightweight MCP server wrappers that connect skills to specific tool backends
@@ -507,8 +507,8 @@ This file is the explicit capability and coverage contract for the project.
 | R018 | core-capability | validated | M002/S01 | none | skills/fortigate-firewall-audit/SKILL.md passes validate.sh, encodes VDOM segmentation, UTM profile binding, FortiGuard service validation, SD-WAN SLA evaluation, HA posture. 2692 body words. references/policy-model.md + cli-reference.md present. |
 | R019 | core-capability | validated | M002/S01 | none | skills/checkpoint-firewall-audit/SKILL.md passes validate.sh, encodes R80+ rulebase ordered/inline layers, blade activation audit, SIC verification, SmartConsole management validation, identity awareness. 2537 body words. references/policy-model.md + cli-reference.md present. |
 | R020 | core-capability | validated | M002/S01 | none | skills/cisco-firewall-audit/SKILL.md passes validate.sh, encodes dual-platform ASA security-levels/ACL/MPF + FTD ACP/Snort evaluation chain using [ASA]/[FTD] labels. 2694 body words. references/policy-model.md + cli-reference.md present. |
-| R021 | core-capability | active | M002/S02 | none | unmapped |
-| R022 | compliance/security | active | M002/S02 | none | unmapped |
+| R021 | core-capability | validated | M002/S02 | none | skills/acl-rule-analysis/SKILL.md passes validate.sh (0 errors), body 2458 words ≤2700, 6-vendor inline labels ([Cisco]/[JunOS]/[EOS]/[PAN-OS]/[FortiGate]/[CheckPoint]) with shadowed rule detection, overly permissive rule flagging, unused rule discovery, redundant rule identification, rule ordering optimization. references/ includes cli-reference.md + rule-patterns.md. |
+| R022 | compliance/security | validated | M002/S02 | none | skills/cis-benchmark-audit/SKILL.md passes validate.sh (0 errors), body 2237 words ≤2700, 4-platform coverage (Cisco IOS, PAN-OS, JunOS, Check Point), Management/Control/Data Plane compliance assessment, control-reference.md cites 69 CIS control IDs with 0 reproduced benchmark text (Remediation:/Rationale: grep returns 0). D026 copyright risk retired. |
 | R023 | compliance/security | active | M002/S02 | none | unmapped |
 | R024 | core-capability | active | M002/S03 | none | unmapped |
 | R025 | core-capability | active | M002/S03 | none | unmapped |
@@ -533,7 +533,7 @@ This file is the explicit capability and coverage contract for the project.
 
 ## Coverage Summary
 
-- Active requirements: 18
-- Mapped to slices: 18
-- Validated: 20 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020)
+- Active requirements: 16
+- Mapped to slices: 16
+- Validated: 22 (R001, R002, R003, R004, R005, R006, R007, R008, R009, R010, R011, R012, R013, R014, R015, R016, R017, R018, R019, R020, R021, R022)
 - Unmapped active requirements: 0

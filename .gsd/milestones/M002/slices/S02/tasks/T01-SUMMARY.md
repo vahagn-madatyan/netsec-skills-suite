@@ -48,6 +48,17 @@ Also fixed pre-flight observability gaps: added `## Observability / Diagnostics`
 - All 6 vendor labels present: [Cisco] (7), [JunOS] (5), [EOS] (5), [PAN-OS] (6), [FortiGate] (6), [CheckPoint] (6)
 - `bash scripts/validate.sh 2>&1 | grep -c 'ERROR:'` → 0 (no regressions)
 
+## Verification Evidence
+
+| # | Command | Exit Code | Verdict | Duration |
+|---|---------|-----------|---------|----------|
+| 1 | `bash scripts/validate.sh` | 0 | ✅ pass — "Skills checked: 17, Result: PASS (0 errors)" | 3s |
+| 2 | `awk … SKILL.md \| wc -w` | 0 | ✅ pass — 2458 words (≤2700) | <1s |
+| 3 | `ls skills/acl-rule-analysis/references/ \| wc -l` | 0 | ✅ pass — 2 files | <1s |
+| 4 | `grep -l 'shadowed' skills/acl-rule-analysis/SKILL.md` | 0 | ✅ pass — file path returned | <1s |
+| 5 | `grep -c '\[Cisco\]\|\[JunOS\]\|\[EOS\]\|\[PAN-OS\]\|\[FortiGate\]\|\[CheckPoint\]' SKILL.md` | 0 | ✅ pass — 35 vendor labels | <1s |
+| 6 | `bash scripts/validate.sh 2>&1 \| grep -c 'ERROR:'` | 0 | ✅ pass — 0 errors (no regressions) | 3s |
+
 ### Slice-level checks status (T01 of 4):
 - ✅ validate.sh: 17 skills, 0 errors (expected 19 at slice completion)
 - ✅ acl-rule-analysis word count ≤2700

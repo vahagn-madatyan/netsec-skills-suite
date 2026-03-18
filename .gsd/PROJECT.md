@@ -12,7 +12,7 @@ Deep network engineering and security expertise encoded as portable, agent-agnos
 
 ## Current State
 
-M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S01 complete — delivered 4 vendor-specific firewall audit skills (PAN-OS, FortiGate, Check Point, Cisco ASA/FTD) with 12 reference files. Suite now has 16 skills total, all passing `bash scripts/validate.sh` with 0 errors. R001–R020 validated. Key M002 risk retired: 2700-word budget works for security audit skills with vendor detail offloaded to references/. "Policy audit" procedure shape established. S02 (compliance), S03 (security operations), S04 (remaining security + finalization) remain.
+M001 complete — all 4 slices delivered 12 skills (1 example + 11 real). M002 S01 complete — delivered 4 vendor-specific firewall audit skills. M002 S02 complete — delivered 3 rule analysis and compliance skills (acl-rule-analysis, cis-benchmark-audit, nist-compliance-assessment), retiring D026 CIS copyright risk. Suite now has 19 skills total, all passing `bash scripts/validate.sh` with 0 errors. R001–R023 validated. "Compliance assessment" procedure shape established. S03 (security operations) and S04 (remaining security + finalization) remain.
 
 ## Architecture / Key Patterns
 
