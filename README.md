@@ -49,6 +49,9 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [vulnerability-assessment](skills/vulnerability-assessment/SKILL.md) | CVE assessment for network devices — version-to-CVE mapping, CVSS scoring, remediation prioritization across Cisco, JunOS, EOS, PAN-OS, FortiGate | `read-only` |
 | [siem-log-analysis](skills/siem-log-analysis/SKILL.md) | Network security SIEM analysis — syslog parsing, event correlation, alert triage with Splunk SPL, ELK KQL, and QRadar AQL query patterns | `read-only` |
 | [incident-response-network](skills/incident-response-network/SKILL.md) | Network forensics during incident response — packet capture, flow analysis, lateral movement detection, evidence preservation (Cisco/JunOS/EOS) | `read-only` |
+| [vpn-ipsec-troubleshooting](skills/vpn-ipsec-troubleshooting/SKILL.md) | IPSec/IKE troubleshooting — IKE SA state machine diagnosis, crypto mismatch analysis, NAT-T detection, DPD tuning (Cisco/JunOS/PAN-OS/FortiGate) | `read-only` |
+| [zero-trust-assessment](skills/zero-trust-assessment/SKILL.md) | Zero-trust maturity assessment — 5-pillar scoring rubric (identity, device, network, application, data), NIST 800-207 alignment, micro-segmentation validation | `read-only` |
+| [wireless-security-audit](skills/wireless-security-audit/SKILL.md) | Wireless security audit — SSID policy analysis, 802.1X/EAP validation, rogue AP detection, WPA3 assessment (Cisco WLC/Aruba/Meraki) | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
