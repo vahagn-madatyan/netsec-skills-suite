@@ -52,6 +52,17 @@ npx skills add vahagn-madatyan/network-security-skills-suite --list
 | [vpn-ipsec-troubleshooting](skills/vpn-ipsec-troubleshooting/SKILL.md) | IPSec/IKE troubleshooting — IKE SA state machine diagnosis, crypto mismatch analysis, NAT-T detection, DPD tuning (Cisco/JunOS/PAN-OS/FortiGate) | `read-only` |
 | [zero-trust-assessment](skills/zero-trust-assessment/SKILL.md) | Zero-trust maturity assessment — 5-pillar scoring rubric (identity, device, network, application, data), NIST 800-207 alignment, micro-segmentation validation | `read-only` |
 | [wireless-security-audit](skills/wireless-security-audit/SKILL.md) | Wireless security audit — SSID policy analysis, 802.1X/EAP validation, rogue AP detection, WPA3 assessment (Cisco WLC/Aruba/Meraki) | `read-only` |
+| | **Cloud & Infrastructure Skills** | |
+| [aws-networking-audit](skills/aws-networking-audit/SKILL.md) | AWS VPC design analysis, Transit Gateway routing, security group/NACL audit, VPC flow log analysis | `read-only` |
+| [azure-networking-audit](skills/azure-networking-audit/SKILL.md) | Azure VNet architecture analysis, NSG rule audit, Azure Firewall policy, ExpressRoute/VPN gateway health | `read-only` |
+| [gcp-networking-audit](skills/gcp-networking-audit/SKILL.md) | GCP VPC Network analysis, firewall rule audit, Cloud NAT, Cloud Interconnect, Shared VPC assessment | `read-only` |
+| [cloud-security-posture](skills/cloud-security-posture/SKILL.md) | Cross-cloud security posture assessment — IAM analysis, encryption audit, public exposure detection (AWS/Azure/GCP) | `read-only` |
+| [source-of-truth-audit](skills/source-of-truth-audit/SKILL.md) | Network inventory reconciliation — SOT data quality scoring, intent vs reality comparison (NetBox/Nautobot) | `read-only` |
+| [ipam-dns-audit](skills/ipam-dns-audit/SKILL.md) | IPAM/DNS audit — subnet utilization analysis, DNS record validation, IP conflict detection, capacity planning | `read-only` |
+| | **Observability Skills** | |
+| [monitoring-dashboard-audit](skills/monitoring-dashboard-audit/SKILL.md) | Grafana dashboard analysis, PromQL query validation, alert rule assessment, SLA/SLO reporting | `read-only` |
+| [network-log-analysis](skills/network-log-analysis/SKILL.md) | Device-level syslog analysis — pattern recognition, event correlation, anomaly detection, timeline reconstruction | `read-only` |
+| [incident-response-lifecycle](skills/incident-response-lifecycle/SKILL.md) | Incident response process management — NIST 800-61 lifecycle, escalation, communication, RCA, post-mortem | `read-only` |
 
 > **Safety Tiers:** `read-only` skills only collect data and do not modify device state. `read-write` skills may change configuration or operational state. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
