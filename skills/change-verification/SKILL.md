@@ -10,6 +10,7 @@ metadata:
   safety: read-write
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"🔧","safetyTier":"read-write","requires":{"bins":["ssh"],"env":[]},"tags":["change","verification","rollback"],"mcpDependencies":["git-netops-mcp"],"egressEndpoints":[]}'
 ---
 
 # Change Verification

@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"☁️","safetyTier":"read-only","requires":{"bins":["gcloud"],"env":[]},"tags":["gcp","vpc","cloud"],"mcpDependencies":[],"egressEndpoints":["compute.googleapis.com:443"]}'
 ---
 
 # GCP VPC Network Security Audit

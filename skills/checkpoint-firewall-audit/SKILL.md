@@ -11,6 +11,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"🛡️","safetyTier":"read-only","requires":{"bins":["ssh"],"env":[]},"tags":["checkpoint","firewall","audit"],"mcpDependencies":[],"egressEndpoints":[]}'
 ---
 
 # Check Point Firewall Security Policy Audit

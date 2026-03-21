@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"☁️","safetyTier":"read-only","requires":{"bins":["az"],"env":[]},"tags":["azure","vnet","cloud"],"mcpDependencies":[],"egressEndpoints":["management.azure.com:443"]}'
 ---
 
 # Azure VNet Networking Security Audit

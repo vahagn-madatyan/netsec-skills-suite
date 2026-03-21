@@ -31,6 +31,7 @@ metadata:
   safety: read-only
   author: your-name-or-org
   version: "1.0.0"
+  openclaw: '{"emoji":"🔍","safetyTier":"read-only","requires":{"bins":["ssh"],"env":[]},"tags":["keyword1","keyword2"],"mcpDependencies":[],"egressEndpoints":[]}'
 ---
 ```
 
@@ -42,6 +43,21 @@ metadata:
 | `metadata.safety` | string | Safety tier — `read-only` or `read-write`. See [Safety Tiers](#safety-tiers) below. |
 | `metadata.author` | string | Author name or organization. |
 | `metadata.version` | string | Semantic version string (quoted to prevent YAML type coercion). |
+| `metadata.openclaw` | string | JSON string for OpenClaw/ClawHub compatibility. See [OpenClaw Metadata](#openclaw-metadata) below. |
+
+### OpenClaw Metadata
+
+The `metadata.openclaw` field is a single-line JSON string that enables OpenClaw discovery and ClawHub publishing. Platforms that don't understand it simply ignore it.
+
+| JSON Field | Purpose |
+|------------|---------|
+| `emoji` | Displayed in OpenClaw skill listings and TUI |
+| `safetyTier` | Must mirror `metadata.safety` (`read-only` or `read-write`) |
+| `requires.bins` | Binary dependencies (e.g., `["ssh"]`, `["aws"]`, `[]`) |
+| `requires.env` | Required environment variables (e.g., `["PAN_API_KEY"]`) |
+| `tags` | 3-4 keywords for skill router intent matching |
+| `mcpDependencies` | MCP servers this skill calls (e.g., `["palo-alto-mcp"]`) |
+| `egressEndpoints` | Network endpoints needed (e.g., `["*.amazonaws.com:443"]`) |
 
 ### Required Body Sections
 
@@ -151,10 +167,12 @@ Before submitting a pull request for a new skill:
 - [ ] `SKILL.md` has complete frontmatter with all six keys
 - [ ] `SKILL.md` has all seven required body sections
 - [ ] `metadata.safety` is set to `read-only` or `read-write` as appropriate
+- [ ] `metadata.openclaw` JSON string is present with correct `safetyTier`, `tags`, and dependencies
 - [ ] `references/` directory exists with at least one reference file
 - [ ] `agentskills validate skills/your-skill-name` passes
 - [ ] `bash scripts/validate.sh` passes
 - [ ] Skill catalog table in `README.md` updated with the new skill row
+- [ ] Skill entry added to `manifest.json` with correct profile membership
 - [ ] Commit messages are clear and descriptive
 
 ## Questions?
