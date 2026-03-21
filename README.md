@@ -2,7 +2,7 @@
 
 AI agent skills for network security operations — device triage, configuration auditing, and incident response procedures for Cisco and multi-vendor environments.
 
-![Validate Skills](https://github.com/vahagn-madatyan/network-security-skills-suite/actions/workflows/validate.yml/badge.svg)
+![Validate Skills](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/validate.yml/badge.svg)
 
 ## What Is This?
 
@@ -13,13 +13,13 @@ Skills are written in the Agent Skills SKILL.md format and enhanced with network
 ## Install
 
 ```bash
-npx skills add vahagn-madatyan/network-security-skills-suite
+npx skills add vahagn-madatyan/netsec-skills-suite
 ```
 
 This discovers and installs all skills from the suite. To list available skills without installing:
 
 ```bash
-npx skills add vahagn-madatyan/network-security-skills-suite --list
+npx skills add vahagn-madatyan/netsec-skills-suite --list
 ```
 
 ## Skill Catalog
