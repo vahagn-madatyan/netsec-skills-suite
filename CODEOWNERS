@@ -1,0 +1,14 @@
+# Default code owners for netsec-skills-suite.
+# These users will be automatically requested for review on PRs.
+
+# Global owner
+* @vahagn-madatyan
+
+# Skill definitions
+/skills/ @vahagn-madatyan
+
+# CI/CD and security workflows
+/.github/ @vahagn-madatyan
+
+# Security audit scripts
+/scripts/ @vahagn-madatyan

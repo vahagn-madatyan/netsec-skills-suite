@@ -23,7 +23,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install skills-ref validator
-        run: pip install skills-ref==0.1.1
+        run: pip install --require-hashes --no-deps -r requirements/validate.txt
 
       - name: Run spec validation (agentskills)
         run: |

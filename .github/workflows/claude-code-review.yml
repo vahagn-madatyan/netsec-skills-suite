@@ -10,6 +10,9 @@ on:
     #   - "src/**/*.js"
     #   - "src/**/*.jsx"
 
+# Default to no permissions; job-level blocks grant only what is needed.
+permissions: {}
+
 jobs:
   claude-review:
     # Optional: Filter by PR author
