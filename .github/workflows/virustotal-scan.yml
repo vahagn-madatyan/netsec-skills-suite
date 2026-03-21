@@ -16,7 +16,7 @@ jobs:
     name: Scan Skills with VirusTotal
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pull-requests: write
     steps:
       - name: Checkout
@@ -90,7 +90,9 @@ jobs:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
             /tmp/vt-scan/*
-          update_release_body: ${{ github.event_name == 'release' }}
+          # Note: update_release_body requires contents:write — enable
+          # only when creating a dedicated release job with write scope.
+          update_release_body: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Parse scan results
