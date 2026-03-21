@@ -13,7 +13,7 @@ responsibly. **Do not open a public GitHub issue for security vulnerabilities.**
 
 ### How to Report
 
-- **Email:** [vmadatyan96@gmail.com](mailto:vmadatyan96@gmail.com)
+- **Email:** [me@vahagn.dev](mailto:me@vahagn.dev)
 - **Subject line:** `[SECURITY] netsec-skills-suite — <brief description>`
 
 ### What to Include
