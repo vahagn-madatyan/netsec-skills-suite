@@ -2,7 +2,10 @@
 
 AI agent skills for network security operations — device triage, configuration auditing, and incident response procedures for Cisco and multi-vendor environments.
 
-![Validate Skills](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/validate.yml/badge.svg)
+[![Validate Skills](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/validate.yml/badge.svg)](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/validate.yml)
+[![SkillCheck](https://img.shields.io/badge/SkillCheck-Validated-4c1?style=flat-square)](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/skillcheck.yml)
+[![VirusTotal](https://img.shields.io/badge/VirusTotal-Scanned-394EFF?style=flat-square&logo=virustotal&logoColor=white)](https://github.com/vahagn-madatyan/netsec-skills-suite/actions/workflows/virustotal-scan.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/vahagn-madatyan/netsec-skills-suite/badge)](https://scorecard.dev/viewer/?uri=github.com/vahagn-madatyan/netsec-skills-suite)
 
 ## What Is This?
 
@@ -119,28 +122,38 @@ skills/
       threshold-tables.md
       cli-reference.md
 scripts/
-  validate.sh             # Custom convention validator
+  validate.sh                  # Custom convention validator
+  skill_security_auditor.py    # SkillCheck security scanner
 .github/
   workflows/
-    validate.yml           # CI pipeline — runs on push to main and PRs
+    validate.yml               # CI — spec + convention validation
+    skillcheck.yml             # CI — security audit (prompt injection, cmd injection, safety tier)
+    virustotal-scan.yml        # CI — VirusTotal 70+ engine scan on PRs and releases
+    scorecards.yml             # CI — OpenSSF Scorecard (weekly)
+    claude-code-review.yml     # CI — Claude Code AI review on PRs
 ```
 
-## Validation
+## Validation & Security
 
-Every skill is validated at two layers:
+Every skill passes through a multi-layer validation and security pipeline:
 
 1. **Spec validation** — `agentskills validate` checks compliance with the Agent Skills SKILL.md specification (frontmatter schema, required fields).
 2. **Convention validation** — `scripts/validate.sh` checks network-security-specific conventions (safety tier metadata, required body sections, `references/` directory).
+3. **SkillCheck security audit** — `scripts/skill_security_auditor.py` scans for command injection, prompt injection, safety tier mismatches, credential harvesting, obfuscation, and supply chain risks.
+4. **VirusTotal scan** — Changed skill files are packaged and scanned by 70+ antivirus engines on every PR. Release assets are scanned on publish.
+5. **OpenSSF Scorecard** — Weekly automated evaluation of repository security posture (branch protection, dependency updates, CI tests, signed releases).
+6. **Claude Code Review** — AI-powered code review on pull requests.
 
-To run both locally:
+To run validation and security checks locally:
 
 ```bash
 pip install skills-ref==0.1.1
 agentskills validate skills/
 bash scripts/validate.sh
+python3 scripts/skill_security_auditor.py skills/
 ```
 
-CI runs both checks automatically on every push to `main` and on pull requests.
+All checks run automatically in CI on every push to `main` and on pull requests.
 
 ## Contributing
 
