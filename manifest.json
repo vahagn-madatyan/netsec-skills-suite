@@ -42,7 +42,19 @@
         "incident-response-network",
         "vpn-ipsec-troubleshooting",
         "zero-trust-assessment",
-        "wireless-security-audit"
+        "wireless-security-audit",
+        "zscaler-zia-zpa-audit",
+        "prisma-access-audit",
+        "fortisase-audit"
+      ]
+    },
+    "sase-only": {
+      "description": "SASE and Zero Trust vendor audits — Zscaler, Prisma Access, FortiSASE",
+      "skills": [
+        "zero-trust-assessment",
+        "zscaler-zia-zpa-audit",
+        "prisma-access-audit",
+        "fortisase-audit"
       ]
     },
     "cloud-only": {
@@ -317,6 +329,27 @@
       "safetyTier": "read-only",
       "mcpDependencies": [],
       "egressEndpoints": []
+    },
+    {
+      "name": "zscaler-zia-zpa-audit",
+      "path": "skills/zscaler-zia-zpa-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": ["*.zscaler.net:443", "*.private.zscaler.com:443", "*.zscalerone.net:443"]
+    },
+    {
+      "name": "prisma-access-audit",
+      "path": "skills/prisma-access-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": ["*.prismaaccess.com:443", "api.sase.paloaltonetworks.com:443"]
+    },
+    {
+      "name": "fortisase-audit",
+      "path": "skills/fortisase-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": ["*.fortisase.com:443", "*.forticloud.com:443"]
     }
   ]
 }

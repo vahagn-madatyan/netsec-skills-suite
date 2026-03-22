@@ -70,6 +70,9 @@ See [docs/SUBMODULE.md](docs/SUBMODULE.md) for update, version pinning, and Open
 | [incident-response-network](skills/incident-response-network/SKILL.md) | Network forensics during incident response — packet capture, flow analysis, lateral movement detection, evidence preservation (Cisco/JunOS/EOS) | `read-only` |
 | [vpn-ipsec-troubleshooting](skills/vpn-ipsec-troubleshooting/SKILL.md) | IPSec/IKE troubleshooting — IKE SA state machine diagnosis, crypto mismatch analysis, NAT-T detection, DPD tuning (Cisco/JunOS/PAN-OS/FortiGate) | `read-only` |
 | [zero-trust-assessment](skills/zero-trust-assessment/SKILL.md) | Zero-trust maturity assessment — 5-pillar scoring rubric (identity, device, network, application, data), NIST 800-207 alignment, micro-segmentation validation | `read-only` |
+| [zscaler-zia-zpa-audit](skills/zscaler-zia-zpa-audit/SKILL.md) | Zscaler ZIA+ZPA SASE audit — URL filtering policy analysis, SSL inspection coverage, Cloud Firewall rules, ZPA application segments, access policy evaluation, connector health | `read-only` |
+| [prisma-access-audit](skills/prisma-access-audit/SKILL.md) | Prisma Access SASE audit — mobile user/remote network policy evaluation, threat prevention profiles, GlobalProtect client compliance, service connection validation | `read-only` |
+| [fortisase-audit](skills/fortisase-audit/SKILL.md) | FortiSASE audit — SWG policy review, ZTNA application gateway assessment, thin edge integration, FortiClient compliance, FortiGuard service validation | `read-only` |
 | [wireless-security-audit](skills/wireless-security-audit/SKILL.md) | Wireless security audit — SSID policy analysis, 802.1X/EAP validation, rogue AP detection, WPA3 assessment (Cisco WLC/Aruba/Meraki) | `read-only` |
 | | **Cloud & Infrastructure Skills** | |
 | [aws-networking-audit](skills/aws-networking-audit/SKILL.md) | AWS VPC design analysis, Transit Gateway routing, security group/NACL audit, VPC flow log analysis | `read-only` |
