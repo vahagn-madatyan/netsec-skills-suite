@@ -40,3 +40,57 @@ jobs:
 
       - name: Run convention validation (custom)
         run: bash scripts/validate.sh
+
+      - name: Validate manifest.json
+        run: |
+          python3 -c "
+          import json, sys
+
+          with open('manifest.json') as f:
+              m = json.load(f)
+
+          errors = []
+
+          # Required top-level keys
+          for key in ['name', 'version', 'skills', 'profiles']:
+              if key not in m:
+                  errors.append(f'Missing required key: {key}')
+
+          # Validate skills array
+          skill_names = set()
+          skill_dirs = set()
+          import os
+          for d in os.listdir('skills'):
+              if os.path.isfile(os.path.join('skills', d, 'SKILL.md')):
+                  skill_dirs.add(d)
+
+          for skill in m.get('skills', []):
+              for field in ['name', 'path', 'safetyTier']:
+                  if field not in skill:
+                      errors.append(f'Skill {skill.get(\"name\", \"?\")} missing field: {field}')
+              name = skill.get('name', '')
+              skill_names.add(name)
+              if skill.get('safetyTier') not in ('read-only', 'read-write'):
+                  errors.append(f'Skill {name}: invalid safetyTier')
+
+          # Every skill dir should have a manifest entry
+          missing = skill_dirs - skill_names
+          if missing:
+              errors.append(f'Skills in skills/ but not in manifest.json: {missing}')
+
+          # Validate profiles reference real skills
+          for pname, profile in m.get('profiles', {}).items():
+              skills_list = profile.get('skills', [])
+              if skills_list == '*':
+                  continue
+              for s in skills_list:
+                  if s not in skill_names:
+                      errors.append(f'Profile {pname} references unknown skill: {s}')
+
+          if errors:
+              for e in errors:
+                  print(f'::error::{e}', file=sys.stderr)
+              sys.exit(1)
+          else:
+              print(f'manifest.json: valid ({len(skill_names)} skills, {len(m[\"profiles\"])} profiles)')
+          "
