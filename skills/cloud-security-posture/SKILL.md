@@ -9,6 +9,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"☁️","safetyTier":"read-only","requires":{"bins":["aws","az","gcloud"],"env":[]},"tags":["cloud","security","posture"],"mcpDependencies":["aws-network-mcp"],"egressEndpoints":["*.amazonaws.com:443","management.azure.com:443","*.googleapis.com:443"]}'
 ---
 
 # Cloud Security Posture Assessment

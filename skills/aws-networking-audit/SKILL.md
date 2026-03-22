@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"☁️","safetyTier":"read-only","requires":{"bins":["aws"],"env":["AWS_ACCESS_KEY_ID"]},"tags":["aws","vpc","cloud"],"mcpDependencies":["aws-network-mcp"],"egressEndpoints":["*.amazonaws.com:443"]}'
 ---
 
 # AWS VPC Networking Security Audit

@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"🛡️","safetyTier":"read-only","requires":{"bins":[],"env":[]},"tags":["wireless","802.1x","wpa3"],"mcpDependencies":["juniper-mist-mcp"],"egressEndpoints":["api.mist.com:443","api.eu.mist.com:443"]}'
 ---
 
 # Wireless Security Audit

@@ -1,0 +1,322 @@
+{
+  "name": "netsec-skills-suite",
+  "version": "1.0.0",
+  "description": "Network & Security Skills Suite",
+  "repository": "https://github.com/vahagn-madatyan/netsec-skills-suite",
+  "license": "Apache-2.0",
+  "nemonet": {
+    "minVersion": "0.1.0",
+    "defaultProfile": "all"
+  },
+  "profiles": {
+    "all": {
+      "description": "Install all skills",
+      "skills": "*"
+    },
+    "networking-only": {
+      "description": "Device health, routing protocols, topology, interfaces",
+      "skills": [
+        "cisco-device-health",
+        "juniper-device-health",
+        "arista-device-health",
+        "bgp-analysis",
+        "ospf-analysis",
+        "eigrp-analysis",
+        "isis-analysis",
+        "interface-health",
+        "network-topology-discovery"
+      ]
+    },
+    "security-only": {
+      "description": "Firewall audits, compliance, vulnerability, incident response",
+      "skills": [
+        "palo-alto-firewall-audit",
+        "fortigate-firewall-audit",
+        "checkpoint-firewall-audit",
+        "cisco-firewall-audit",
+        "acl-rule-analysis",
+        "cis-benchmark-audit",
+        "nist-compliance-assessment",
+        "vulnerability-assessment",
+        "siem-log-analysis",
+        "incident-response-network",
+        "vpn-ipsec-troubleshooting",
+        "zero-trust-assessment",
+        "wireless-security-audit"
+      ]
+    },
+    "cloud-only": {
+      "description": "AWS, Azure, GCP networking and cloud security posture",
+      "skills": [
+        "aws-networking-audit",
+        "azure-networking-audit",
+        "gcp-networking-audit",
+        "cloud-security-posture",
+        "source-of-truth-audit",
+        "ipam-dns-audit"
+      ]
+    },
+    "mcd-production": {
+      "description": "McDonald's production subset — Cisco, Juniper, PAN, AWS",
+      "skills": [
+        "cisco-device-health",
+        "juniper-device-health",
+        "bgp-analysis",
+        "ospf-analysis",
+        "interface-health",
+        "network-topology-discovery",
+        "palo-alto-firewall-audit",
+        "acl-rule-analysis",
+        "zero-trust-assessment",
+        "aws-networking-audit",
+        "change-verification",
+        "config-management",
+        "incident-response-network",
+        "incident-response-lifecycle",
+        "wireless-security-audit"
+      ]
+    }
+  },
+  "skills": [
+    {
+      "name": "example-device-health",
+      "path": "skills/example-device-health",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "cisco-device-health",
+      "path": "skills/cisco-device-health",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "juniper-device-health",
+      "path": "skills/juniper-device-health",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "arista-device-health",
+      "path": "skills/arista-device-health",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "bgp-analysis",
+      "path": "skills/bgp-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "ospf-analysis",
+      "path": "skills/ospf-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "eigrp-analysis",
+      "path": "skills/eigrp-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "isis-analysis",
+      "path": "skills/isis-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "interface-health",
+      "path": "skills/interface-health",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "network-topology-discovery",
+      "path": "skills/network-topology-discovery",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "change-verification",
+      "path": "skills/change-verification",
+      "safetyTier": "read-write",
+      "mcpDependencies": ["git-netops-mcp"],
+      "egressEndpoints": [],
+      "requiresApproval": true
+    },
+    {
+      "name": "config-management",
+      "path": "skills/config-management",
+      "safetyTier": "read-write",
+      "mcpDependencies": ["git-netops-mcp"],
+      "egressEndpoints": [],
+      "requiresApproval": true
+    },
+    {
+      "name": "palo-alto-firewall-audit",
+      "path": "skills/palo-alto-firewall-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": ["palo-alto-mcp"],
+      "egressEndpoints": ["*.paloaltonetworks.com:443"]
+    },
+    {
+      "name": "fortigate-firewall-audit",
+      "path": "skills/fortigate-firewall-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "checkpoint-firewall-audit",
+      "path": "skills/checkpoint-firewall-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "cisco-firewall-audit",
+      "path": "skills/cisco-firewall-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "acl-rule-analysis",
+      "path": "skills/acl-rule-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "cis-benchmark-audit",
+      "path": "skills/cis-benchmark-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "nist-compliance-assessment",
+      "path": "skills/nist-compliance-assessment",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "vulnerability-assessment",
+      "path": "skills/vulnerability-assessment",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "siem-log-analysis",
+      "path": "skills/siem-log-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "incident-response-network",
+      "path": "skills/incident-response-network",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "vpn-ipsec-troubleshooting",
+      "path": "skills/vpn-ipsec-troubleshooting",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "zero-trust-assessment",
+      "path": "skills/zero-trust-assessment",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "wireless-security-audit",
+      "path": "skills/wireless-security-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": ["juniper-mist-mcp"],
+      "egressEndpoints": ["api.mist.com:443", "api.eu.mist.com:443"]
+    },
+    {
+      "name": "aws-networking-audit",
+      "path": "skills/aws-networking-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": ["aws-network-mcp"],
+      "egressEndpoints": ["*.amazonaws.com:443"]
+    },
+    {
+      "name": "azure-networking-audit",
+      "path": "skills/azure-networking-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": ["management.azure.com:443"]
+    },
+    {
+      "name": "gcp-networking-audit",
+      "path": "skills/gcp-networking-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": ["compute.googleapis.com:443"]
+    },
+    {
+      "name": "cloud-security-posture",
+      "path": "skills/cloud-security-posture",
+      "safetyTier": "read-only",
+      "mcpDependencies": ["aws-network-mcp"],
+      "egressEndpoints": ["*.amazonaws.com:443", "management.azure.com:443", "*.googleapis.com:443"]
+    },
+    {
+      "name": "source-of-truth-audit",
+      "path": "skills/source-of-truth-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "ipam-dns-audit",
+      "path": "skills/ipam-dns-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "monitoring-dashboard-audit",
+      "path": "skills/monitoring-dashboard-audit",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "network-log-analysis",
+      "path": "skills/network-log-analysis",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    },
+    {
+      "name": "incident-response-lifecycle",
+      "path": "skills/incident-response-lifecycle",
+      "safetyTier": "read-only",
+      "mcpDependencies": [],
+      "egressEndpoints": []
+    }
+  ]
+}

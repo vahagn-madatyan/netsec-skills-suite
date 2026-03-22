@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"🛡️","safetyTier":"read-only","requires":{"bins":[],"env":["PAN_API_KEY"]},"tags":["palo-alto","firewall","audit","security"],"mcpDependencies":["palo-alto-mcp"],"egressEndpoints":["*.paloaltonetworks.com:443"]}'
 ---
 
 # PAN-OS Firewall Security Policy Audit

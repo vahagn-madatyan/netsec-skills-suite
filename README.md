@@ -15,6 +15,8 @@ Skills are written in the Agent Skills SKILL.md format and enhanced with network
 
 ## Install
 
+### Via skills.sh (Claude Code, Cursor, Codex, Copilot, Gemini CLI, etc.)
+
 ```bash
 npx skills add vahagn-madatyan/netsec-skills-suite
 ```
@@ -24,6 +26,20 @@ This discovers and installs all skills from the suite. To list available skills 
 ```bash
 npx skills add vahagn-madatyan/netsec-skills-suite --list
 ```
+
+### Via ClawHub (OpenClaw)
+
+```bash
+clawhub install netsec-skills-suite
+```
+
+### Via Git Submodule (NemoNet, OpenClaw forks, custom projects)
+
+```bash
+git submodule add https://github.com/vahagn-madatyan/netsec-skills-suite.git skills/netsec-skills-suite
+```
+
+See [docs/SUBMODULE.md](docs/SUBMODULE.md) for update, version pinning, and OpenClaw `extraDirs` configuration.
 
 ## Skill Catalog
 

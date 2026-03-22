@@ -10,6 +10,7 @@ metadata:
   safety: read-only
   author: network-security-skills-suite
   version: "1.0.0"
+  openclaw: '{"emoji":"🔍","safetyTier":"read-only","requires":{"bins":["ssh"],"env":[]},"tags":["ospf","routing","protocol"],"mcpDependencies":[],"egressEndpoints":[]}'
 ---
 
 # OSPF Protocol Analysis
