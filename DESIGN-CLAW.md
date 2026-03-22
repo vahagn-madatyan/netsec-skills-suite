@@ -6,8 +6,8 @@
 > for 34+ network security skills, consumed by multiple platforms and deployment targets —
 > from standalone `npx skills add` to submodule integration in consumer projects.
 >
-> For NemoNet-specific integration (sandbox deployment, Dockerfile, Launchable, MCP servers,
-> egress policies), see [NEMONET.md](NEMONET.md).
+> NemoNet-specific integration (sandbox, Dockerfile, Launchable, MCP servers, egress
+> policies) is tracked in the [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet).
 
 ---
 
@@ -40,7 +40,7 @@ repo consumable by **every platform** without duplicating content:
 
 1. **skills.sh** — already works (`npx skills add vahagn-madatyan/netsec-skills-suite`)
 2. **OpenClaw** — via `metadata.openclaw` in SKILL.md + ClawHub publishing
-3. **NemoNet** (fork of NemoClaw) — via git submodule with sandbox deployment (see [NEMONET.md](NEMONET.md))
+3. **NemoNet** (fork of NemoClaw) — via git submodule with sandbox deployment (see [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet))
 4. **ClawHub** — via `clawhub sync --all` CLI
 5. **Any consumer project** — via git submodule at `skills/netsec-skills-suite/`
 
@@ -92,7 +92,7 @@ git commit -m "chore: update netsec-skills-suite to latest"
 ```
 
 **Pros:** Version pinned, reproducible, auditable, works in air-gapped builds.
-**Use:** Production, any regulated deployment, NemoNet (see [NEMONET.md](NEMONET.md)).
+**Use:** Production, any regulated deployment, NemoNet (see [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet)).
 
 ### Path 2: Git Clone (Always Latest)
 
@@ -633,7 +633,7 @@ This repo already runs a multi-layer security pipeline that carries forward:
 - **Claude Code Review** — AI-powered review on pull requests
 
 > For NemoNet-specific security (sandbox isolation, egress policy, safety tier
-> enforcement), see [NEMONET.md](NEMONET.md).
+> enforcement), see [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet).
 
 ---
 
@@ -700,7 +700,7 @@ cd skills/netsec-skills-suite && git checkout v1.0.0 && cd ../..
 - [ ] Verify skills appear on ClawHub
 - [ ] Post announcement to OpenClaw Discord
 
-> **Phase 4 (NemoNet Repo Setup)** has been moved to [NEMONET.md](NEMONET.md).
+> **Phase 4 (NemoNet Repo Setup)** has been moved to [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet).
 
 ---
 
@@ -713,7 +713,7 @@ cd skills/netsec-skills-suite && git checkout v1.0.0 && cd ../..
 5. **OpenClaw**: Skills with `metadata.openclaw` are discoverable by OpenClaw's skill loader
 
 > For NemoNet-specific verification (nemonet-install.sh, egress policy generation),
-> see [NEMONET.md](NEMONET.md).
+> see [NemoNet repo](https://github.com/vahagn-madatyan/NemoNet).
 
 ---
 
