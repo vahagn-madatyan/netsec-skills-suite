@@ -78,6 +78,11 @@ jobs:
           if missing:
               errors.append(f'Skills in skills/ but not in manifest.json: {missing}')
 
+          # Every manifest entry should have a skill dir
+          stale = skill_names - skill_dirs
+          if stale:
+              errors.append(f'Skills in manifest.json but not in skills/: {stale}')
+
           # Validate profiles reference real skills
           for pname, profile in m.get('profiles', {}).items():
               skills_list = profile.get('skills', [])
